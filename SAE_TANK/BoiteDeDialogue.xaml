@@ -7,18 +7,21 @@
         mc:Ignorable="d"
         Title="BoiteDeDialogue" Height="450" Width="800">
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="44,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="137,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="232,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="467,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="560,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
-        <Rectangle HorizontalAlignment="Left" Height="80" Margin="655,284,0,0" Stroke="Black" VerticalAlignment="Top" Width="80"/>
+        
+        <Button Content="" HorizontalAlignment="Left" Margin="20,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="120,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="220,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
+
+        <Button Content="" HorizontalAlignment="right" Margin="0,295,20,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button Content="" HorizontalAlignment="right" Margin="0,295,120,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button Content="" HorizontalAlignment="right" Margin="0,295,220,0" VerticalAlignment="Top" Width="80" Height="80"/>
 
 
-        <Label Content="JOUEUR 1" HorizontalAlignment="Left" Margin="128,107,0,0" VerticalAlignment="Top"/>
-        <Label Content="JOUEUR 2" HorizontalAlignment="Left" Margin="569,107,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="99,199,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="540,199,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
+        <Label Content="JOUEUR 1" HorizontalAlignment="Left" Margin="100,100,0,0" VerticalAlignment="Top" Width="120" Height="50"/>
+        <Label Content="JOUEUR 2" HorizontalAlignment="right" Margin="0,100,100,0" VerticalAlignment="Top" Width="120" Height="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="100,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="right" Margin="0,200,100,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
+        
         <Button Content="Button" HorizontalAlignment="Center" Margin="0,153,0,0" VerticalAlignment="Top" Width="150" Height="100"/>
 
     </Grid>
