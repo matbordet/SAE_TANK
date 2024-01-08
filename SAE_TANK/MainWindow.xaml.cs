@@ -25,8 +25,8 @@ namespace SAE_TANK
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1 = false;
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
 
-        private int Rect_Tank_J1_Speed = 10;
-        private int Rect_Tank_J2_Speed = 10;
+        private int Rect_Tank_J1_Speed = 5;
+        private int Rect_Tank_J2_Speed = 5;
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
