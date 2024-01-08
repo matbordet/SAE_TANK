@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_TANK"
         mc:Ignorable="d"
-        Title="MainWindow" Height="451" Width="800">
+        Title="MainWindow" Height="450" Width="800">
     <Canvas >
         <Rectangle x:Name="Rect_Voiture" Height="92" Canvas.Left="88" Stroke="Black" Canvas.Top="342" Width="222"/>
 
