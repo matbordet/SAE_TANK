@@ -8,13 +8,27 @@
         Title="BoiteDeDialogue" Height="450" Width="800">
     <Grid>
         
-        <Button Content="" HorizontalAlignment="Left" Margin="20,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="120,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="" HorizontalAlignment="Left" Margin="220,295,0,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button x:Name="Tank_Bleu_1" HorizontalAlignment="Left" Margin="20,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_bleu_1.png"></Image>
+        </Button>
+        <Button x:Name="Tank_Bleu_2" HorizontalAlignment="Left" Margin="120,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_bleu_2.png"></Image>
+        </Button>
+        <Button x:Name="Tank_Bleu_3" HorizontalAlignment="Left" Margin="220,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_bleu_3.png"></Image>
+        </Button>
 
-        <Button Content="" HorizontalAlignment="right" Margin="0,295,20,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="" HorizontalAlignment="right" Margin="0,295,120,0" VerticalAlignment="Top" Width="80" Height="80"/>
-        <Button Content="" HorizontalAlignment="right" Margin="0,295,220,0" VerticalAlignment="Top" Width="80" Height="80"/>
+        <Button x:Name="Tank_Rouge_1" HorizontalAlignment="right" Margin="0,295,20,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_Rouge_1.png"></Image>
+        </Button>
+        <Button x:Name="Tank_Rouge_2" HorizontalAlignment="right" Margin="0,295,120,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_Rouge_2.png"></Image>
+        </Button>
+        <Button x:Name="Tank_Rouge_3" HorizontalAlignment="right" Margin="0,295,220,0" VerticalAlignment="Top" Width="80" Height="80">
+            <Image Source="Tank_Rouge_3.png"></Image>
+        </Button>
+
+      
 
 
         <Label Content="JOUEUR 1" HorizontalAlignment="Left" Margin="100,100,0,0" VerticalAlignment="Top" Width="120" Height="50"/>
