@@ -23,10 +23,20 @@ namespace SAE_TANK
         public MainWindow()
         {
             InitializeComponent();
-            ImageBrush voiture = new ImageBrush();
-            voiture.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "voiture.png"));
+            ImageBrush tank1 = new ImageBrush();
+            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_bleu_1.png"));
+            ImageBrush tank2 = new ImageBrush();
+            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_rouge_3.png"));
+            ImageBrush sol = new ImageBrush();
+            sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
+
+            ((BitmapImage)tank1.ImageSource).Rotation = Rotation.Rotate90;
+
+            fond_Arene.Fill = sol;
+            Rect_Tank_J1.Fill = tank1;
+            Rect_Tank_J2.Fill = tank2;
+
             
-            Rect_Voiture.Fill = voiture;
         }
     }
 }

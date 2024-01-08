@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_TANK"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1000" Width="1900" WindowStartupLocation="CenterScreen">
     <Canvas >
-        <Rectangle x:Name="Rect_Voiture" Height="92" Canvas.Left="88" Stroke="Black" Canvas.Top="342" Width="222"/>
+
+        <Rectangle Height="984" Stroke="Black" Width="303" Fill="DeepSkyBlue" />
+        <Rectangle Height="984" Stroke="Black" Width="303" Fill="red" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1597"/>
+
+        <Rectangle Height="160" Stroke="Black" Width="303" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Height="160" Stroke="Black" Width="303" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1597"/>
+
+        <Rectangle x:Name="fond_Arene" Height="984" Canvas.Left="303" Stroke="Black" Width="1294" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        <Rectangle x:Name="Rect_Tank_J1" Height="75" Canvas.Left="340" Fill="Blue" Canvas.Top="30" Width="75"/>
+        <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1467" Fill="red" Canvas.Top="862" Width="75" />
 
     </Canvas>
 </Window>
