@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SAE_TANK"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Canvas >
+        <Rectangle x:Name="Rect_Voiture" Height="92" Canvas.Left="88" Stroke="Black" Canvas.Top="342" Width="222"/>
 
-    </Grid>
+    </Canvas>
 </Window>

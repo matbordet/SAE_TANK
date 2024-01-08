@@ -23,6 +23,10 @@ namespace SAE_TANK
         public MainWindow()
         {
             InitializeComponent();
+            ImageBrush voiture = new ImageBrush();
+            voiture.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "voiture.png"));
+            
+            Rect_Voiture.Fill = voiture;
         }
     }
 }
