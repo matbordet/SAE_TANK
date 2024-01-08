@@ -33,19 +33,14 @@ namespace SAE_TANK
             InitializeComponent();
 
             ImageBrush tank1 = new ImageBrush();
-            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_bleu_1.png"));
-
-
-
-
+            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
 
             ImageBrush tank2 = new ImageBrush();
-            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_rouge_3.png"));
+            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
 
             ImageBrush sol = new ImageBrush();
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
 
-            
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
@@ -53,13 +48,11 @@ namespace SAE_TANK
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
-           
 
         }
         private void GameEngine(object sender, EventArgs e)
         {
             MovePlayer();
-            
         }
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)

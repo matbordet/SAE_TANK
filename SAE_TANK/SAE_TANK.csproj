@@ -8,17 +8,82 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Tank_bleu_1.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Tank_bleu_1.png">
+    <None Update="image_Tanks\Tank_bleu_1_E.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Menu.jpg">
+    </None>
+    <None Update="image_Tanks\Tank_bleu_1_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_1_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_1_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_2_E.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_2_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_2_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_2_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_3_E.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_3_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_3_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_bleu_3_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_1_E.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_1_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_1_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_1_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_2_E.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_2_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_2_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_2_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_3_E.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_3_N.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_3_S.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="image_Tanks\Tank_rouge_3_W.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="sol.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Tank_bleu_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Tank_bleu_2.png">
@@ -34,6 +99,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Tank_rouge_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="voiture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
