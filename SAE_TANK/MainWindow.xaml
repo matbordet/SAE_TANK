@@ -17,16 +17,8 @@
         <Rectangle x:Name="fond_Arene" Height="984" Canvas.Left="303" Stroke="Black" Width="1294" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <Rectangle x:Name="Rect_Tank_J1" Height="75" Canvas.Left="340" Fill="Blue" Canvas.Top="30" Width="75"/>
-        <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1467" Fill="red" Canvas.Top="862" Width="75" RenderTransformOrigin="0.5,0.5" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="180"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1467" Fill="red" Canvas.Top="862" Width="75"/>
+
         <Label x:Name="test_Lb" Content="" Canvas.Left="824" Canvas.Top="492" Height="111" Width="204" FontSize="72"/>
 
 
