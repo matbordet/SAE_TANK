@@ -8,10 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="sol.png">
+    <None Remove="Tank_bleu_1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Tank_bleu_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Tank_bleu_1.png">
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Menu.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Tank_bleu_2.png">
@@ -27,9 +34,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Tank_rouge_3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="voiture.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

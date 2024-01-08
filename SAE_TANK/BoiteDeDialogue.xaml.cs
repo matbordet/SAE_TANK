@@ -22,20 +22,10 @@ namespace SAE_TANK
         public BoiteDeDialogue()
         {
             InitializeComponent();
-            ImageBrush tank_bleu_1 = new ImageBrush();
-            tank_bleu_1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_bleu_1.png"));
-            ImageBrush tank_bleu_2 = new ImageBrush();
-            tank_bleu_2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_bleu_2.png"));
-            ImageBrush tank_bleu_3 = new ImageBrush();
-            tank_bleu_3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_bleu_3.png"));
-
-            ImageBrush tank_rouge_1 = new ImageBrush();
-            tank_rouge_1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_rouge_1.png"));
-            ImageBrush tank_rouge_2 = new ImageBrush();
-            tank_rouge_2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_rouge_2.png"));
-            ImageBrush tank_rouge_3 = new ImageBrush();
-            tank_rouge_3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Tank_rouge_3.png"));
-
+            ImageBrush background = new ImageBrush();
+            background.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Menu.jpg"));
+            backgroundMenu.Fill = background;
+            Tank_Bleu_1.Background = background;
         }
     }
 }
