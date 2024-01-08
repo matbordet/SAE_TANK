@@ -19,7 +19,8 @@
         <Rectangle x:Name="Rect_Tank_J1" Height="75" Canvas.Left="340" Fill="Blue" Canvas.Top="30" Width="75"/>
         <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1467" Fill="red" Canvas.Top="862" Width="75"/>
 
-        <Label x:Name="test_Lb" Content="" Canvas.Left="824" Canvas.Top="492" Height="111" Width="204" FontSize="72"/>
+        <Label Content="Joueur1" Height="95" Canvas.Top="10" Width="298" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
+        <Label Content="Joueur2" Height="93" Canvas.Top="12" Width="298" VerticalAlignment="Top" Canvas.Left="1600" HorizontalAlignment="Center" FontSize="48"/>
 
 
     </Canvas>
