@@ -19,8 +19,8 @@
         <Rectangle x:Name="Rect_Tank_J1" Height="75" Canvas.Left="340" Fill="Blue" Canvas.Top="30" Width="75"/>
         <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1467" Fill="red" Canvas.Top="862" Width="75"/>
 
-        <Label Content="Joueur1" Height="95" Canvas.Top="10" Width="298" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
-        <Label Content="Joueur2" Height="93" Canvas.Top="12" Width="298" VerticalAlignment="Top" Canvas.Left="1600" HorizontalAlignment="Center" FontSize="48"/>
+        <Label x:Name="lb_J1" Content="Joueur1" Height="95" Canvas.Top="10" Width="298" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
+        <Label x:Name="lb_J2" Content="Joueur2" Height="93" Canvas.Top="12" Width="298" VerticalAlignment="Top" Canvas.Left="1600" HorizontalAlignment="Center" FontSize="48"/>
 
 
     </Canvas>

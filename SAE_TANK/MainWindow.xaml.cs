@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -37,7 +38,8 @@ namespace SAE_TANK
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
-
+        public string axes_J1 = "N1";
+        public string axes_J2 = "N2";
         public MainWindow()
         {
             InitializeComponent();
@@ -63,7 +65,7 @@ namespace SAE_TANK
             {
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
-                    MoveAndTestBulletTankx(x);
+                    MoveAndTestBulletTank(x);
                 }
                 
             }
@@ -75,7 +77,6 @@ namespace SAE_TANK
             if (e.Key == Key.Q)
             {
                 goLeft_J1 = false;
-               
             }
             if (e.Key == Key.D)
             {
@@ -89,7 +90,7 @@ namespace SAE_TANK
             {
                 goDown_J1 = false;
             }
-            //test control J1
+            //test control J2
             if (e.Key == Key.Left)
             {
                 goLeft_J2 = false;
@@ -114,18 +115,22 @@ namespace SAE_TANK
             if (e.Key == Key.Q)
             {
                 goLeft_J1 = true;
+                axes_J1 = "E1";
             }
             if (e.Key == Key.D)
             {
                 goRight_J1 = true;
+                axes_J1 = "W1";
             }
             if (e.Key == Key.Z)
             {
                 goUp_J1 = true;
+                axes_J1 = "N1";
             }
             if (e.Key == Key.S)
             {
                 goDown_J1 = true;
+                axes_J1 = "S1";
             }
             if(e.Key == Key.E)
             {
@@ -147,18 +152,22 @@ namespace SAE_TANK
             if (e.Key == Key.Left)
             {
                 goLeft_J2 = true;
+                axes_J2 = "E2";
             }
             if (e.Key == Key.Right)
             {
                 goRight_J2 = true;
+                axes_J2 = "W2";
             }
             if (e.Key == Key.Up)
             {
                 goUp_J2 = true;
+                axes_J2 = "N2";
             }
             if (e.Key == Key.Down)
             {
                 goDown_J2 = true;
+                axes_J2 = "S2";
             }
             if (e.Key == Key.Space)
             {
@@ -234,33 +243,94 @@ namespace SAE_TANK
 
 
         }
-        public void MoveAndTestBulletTankx(Rectangle x)
+        public void MoveAndTestBulletTank(Rectangle x)
         {
-            if (x is Rectangle && (string)x.Tag == "bulletTank1")
+            //J1
+            if(axes_J1 =="W1")
             {
-                // si c’est un tir joueur on le déplace vers le haut
-                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
-                // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                // on vérifie que le tir a quitté le le haut du canvas (pas de collision avec un ennemie)
-                if (Canvas.GetTop(x) < 10)
+                if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
-                    itemsToRemove.Add(x);
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                }
+               
+            }
+            else if (axes_J1 == "E1")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank1")
+                {
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                }
+
+            }
+            else if(axes_J1 == "N1")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank1")
+                {
+                    // si c’est un tir joueur on le déplace vers le haut
+                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+
+                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 }
             }
-            if (x is Rectangle && (string)x.Tag == "bulletTank2")
+            else if (axes_J1 == "S1") 
             {
-                // si c’est un tir joueur on le déplace vers le haut
-                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank2Speed);
-                // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                // on vérifie que le tir a quitté le le haut du canvas (pas de collision avec un ennemie)
-                if (Canvas.GetTop(x) < 10)
+                if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
-                    itemsToRemove.Add(x);
+                    // si c’est un tir joueur on le déplace vers le haut
+                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+
+                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 }
+            }
+            //J2
+            if (axes_J2 == "W2")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank2")
+                {
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                }
+
+            }
+            else if (axes_J2 == "E2")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank2")
+                {
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                }
+
+            }
+            else if (axes_J2 == "N2")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank2")
+                {
+                    // si c’est un tir joueur on le déplace vers le haut
+                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+
+                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                }
+            }
+            else if (axes_J2 == "S2")
+            {
+                if (x is Rectangle && (string)x.Tag == "bulletTank2")
+                {
+                    // si c’est un tir joueur on le déplace vers le haut
+                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+
+                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                }
+            }
+            if (Canvas.GetTop(x) < 10||Canvas.GetLeft(x) < 10|| Canvas.GetTop(x) > 1010 || Canvas.GetLeft(x) > 1910)
+            {
+                // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                itemsToRemove.Add(x);
             }
         }
 
