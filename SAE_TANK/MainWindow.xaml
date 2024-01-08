@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_TANK"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1900" WindowStartupLocation="CenterScreen">
-    <Canvas >
+        Title="MainWindow" Height="1000" Width="1900" WindowStartupLocation="CenterScreen" KeyDown="Canvas_KeyDown" KeyUp="Canvas_KeyUp">
+    <Canvas x:Name="Le_Canvas" KeyDown="Canvas_KeyDown" KeyUp="Canvas_KeyUp" >
 
         <Rectangle Height="984" Stroke="Black" Width="303" Fill="DeepSkyBlue" />
         <Rectangle Height="984" Stroke="Black" Width="303" Fill="red" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1597"/>
@@ -27,6 +27,8 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
+        <Label x:Name="test_Lb" Content="" Canvas.Left="824" Canvas.Top="492" Height="111" Width="204" FontSize="72"/>
+
 
     </Canvas>
 </Window>
