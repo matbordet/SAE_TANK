@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +28,12 @@ namespace SAE_TANK
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
 
         private int Rect_Tank_J1_Speed = 5;
+        private int bulletTank1Speed = 15;
         private int Rect_Tank_J2_Speed = 5;
+        private int bulletTank2Speed = 15;
+
+        private List<Rectangle> itemsToRemove = new List<Rectangle>();
+
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
@@ -53,6 +60,13 @@ namespace SAE_TANK
         private void GameEngine(object sender, EventArgs e)
         {
             MovePlayer();
+            {
+                foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
+                {
+                    MoveAndTestBulletTankx(x);
+                }
+                
+            }
         }
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
@@ -113,6 +127,22 @@ namespace SAE_TANK
             {
                 goDown_J1 = true;
             }
+            if(e.Key == Key.E)
+            {
+                itemsToRemove.Clear();
+                Rectangle newBullet = new Rectangle
+                {
+                    Tag = "bulletTank1"
+                ,
+                    Height = 10,
+                    Width = 10,
+                    Fill = Brushes.White,
+                    Stroke = Brushes.Red
+                };
+                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) + newBullet.Height + 50);
+                Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
+                Le_Canvas.Children.Add(newBullet);
+            }
             //test controle J2
             if (e.Key == Key.Left)
             {
@@ -129,6 +159,22 @@ namespace SAE_TANK
             if (e.Key == Key.Down)
             {
                 goDown_J2 = true;
+            }
+            if (e.Key == Key.Space)
+            {
+                itemsToRemove.Clear();
+                Rectangle newBullet = new Rectangle
+                {
+                    Tag = "bulletTank2"
+                ,
+                    Height = 10,
+                    Width = 10,
+                    Fill = Brushes.White,
+                    Stroke = Brushes.Red
+                };
+                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height);
+                Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
+                Le_Canvas.Children.Add(newBullet);
             }
         }
         
@@ -188,6 +234,44 @@ namespace SAE_TANK
 
 
         }
-       
+        public void MoveAndTestBulletTankx(Rectangle x)
+        {
+            if (x is Rectangle && (string)x.Tag == "bulletTank1")
+            {
+                // si c’est un tir joueur on le déplace vers le haut
+                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                // on vérifie que le tir a quitté le le haut du canvas (pas de collision avec un ennemie)
+                if (Canvas.GetTop(x) < 10)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
+            }
+            if (x is Rectangle && (string)x.Tag == "bulletTank2")
+            {
+                // si c’est un tir joueur on le déplace vers le haut
+                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank2Speed);
+                // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
+                Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                // on vérifie que le tir a quitté le le haut du canvas (pas de collision avec un ennemie)
+                if (Canvas.GetTop(x) < 10)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
+            }
+        }
+
+        public void RemoveItemsRemove()
+        {
+            foreach (Rectangle y in itemsToRemove)
+            {
+                // on les enlève du canvas
+                Le_Canvas.Children.Remove(y);
+            }
+        }
+
     }
 }
