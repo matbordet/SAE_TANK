@@ -27,18 +27,18 @@ namespace SAE_TANK
 
         private int Rect_Tank_J1_Speed = 10;
         private int Rect_Tank_J2_Speed = 10;
+        ImageBrush tank1 = new ImageBrush();
+        ImageBrush tank2 = new ImageBrush();
+        ImageBrush sol = new ImageBrush();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            ImageBrush tank1 = new ImageBrush();
             tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
 
-            ImageBrush tank2 = new ImageBrush();
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
 
-            ImageBrush sol = new ImageBrush();
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
 
             fond_Arene.Fill = sol;
@@ -61,6 +61,7 @@ namespace SAE_TANK
             if (e.Key == Key.Q)
             {
                 goLeft_J1 = false;
+               
             }
             if (e.Key == Key.D)
             {
@@ -136,11 +137,13 @@ namespace SAE_TANK
             //deplacement du joueur 1
             if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 0)
             {
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_W.png"));
                 Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) - Rect_Tank_J1_Speed);
             }
             else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width <
             Application.Current.MainWindow.Width)
             {
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_E.png"));
                 Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1_Speed);
             }
 
@@ -148,32 +151,38 @@ namespace SAE_TANK
             if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 0)
             {
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_N.png"));
             }
             else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Width <
             Application.Current.MainWindow.Width)
             {
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
             }
 
             //deplacement du joueur 2
             if (goLeft_J2 && Canvas.GetLeft(Rect_Tank_J2) > 0)
             {
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_W.png"));
                 Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) - Rect_Tank_J2_Speed);
             }
             else if (goRight_J2 && Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width <
             Application.Current.MainWindow.Width)
             {
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_E.png"));
                 Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2_Speed);
             }
 
 
             if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 0)
             {
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
             }
             else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J2.Width <
             Application.Current.MainWindow.Width)
             {
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_S.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
             }
 
