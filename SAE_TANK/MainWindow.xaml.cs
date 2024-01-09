@@ -69,6 +69,7 @@ namespace SAE_TANK
                 }
                 
             }
+            RemoveItemsRemove();
         }
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
@@ -143,7 +144,13 @@ namespace SAE_TANK
                     Width = 10,
                     Fill = Brushes.White,
                     Stroke = Brushes.Red
+                    
                 };
+                if(Canvas.GetTop(newBullet)<Canvas.GetTop(Rect_Tank_J2)+1)
+                    {
+                    newBullet.Tag = "bullet1";
+                    lb_Test.Content = "est passé dessus";
+                    }
                 Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) + newBullet.Height + 50);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                 Le_Canvas.Children.Add(newBullet);

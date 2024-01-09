@@ -21,6 +21,7 @@
 
         <Label x:Name="lb_J1" Content="Joueur1" Height="95" Canvas.Top="10" Width="298" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
         <Label x:Name="lb_J2" Content="Joueur2" Height="93" Canvas.Top="12" Width="298" VerticalAlignment="Top" Canvas.Left="1600" HorizontalAlignment="Center" FontSize="48"/>
+        <Label x:Name="lb_Test" Content="" Canvas.Left="950" Canvas.Top="425" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130"/>
 
 
     </Canvas>
