@@ -439,7 +439,31 @@ namespace SAE_TANK
             }
         }
 
-       
+        public void InitialiseMurs()
+        {
+            Rectangle[] mur = new Rectangle[20];
+            int x = 300 + 180, y = 50, largeur = 20, hauteur = 175,compteur=0;
+            for (int i = 0; i < mur.Length; i++)
+            {
+                mur[i] = new Rectangle();
+                compteur++;
+                mur[i].Width = largeur;
+                mur[i].Height = hauteur;
+                mur[i].VerticalAlignment = VerticalAlignment.Top;
+                mur[i].HorizontalAlignment = HorizontalAlignment.Left;
+                mur[i].Margin = new Thickness(x, y, 0, 0);
+                mur[i].Fill = tank1;
+                this.Le_Canvas.Children.Add(mur[i]);
+                x = x + 190;
+                if(compteur > 3)
+                {
+                    x = 480;
+                    y = y + 175;
+                    compteur = 0;
+                }
+            }
+
+        }
 
     }
 }
