@@ -36,6 +36,8 @@ namespace SAE_TANK
 
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
 
+        ImageBrush murVertival = new ImageBrush();
+        ImageBrush murHorizontal = new ImageBrush();
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
@@ -47,10 +49,10 @@ namespace SAE_TANK
             InitializeComponent();
 
             tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
-
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
-
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
+            murVertival.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical.jpg"));
+            murHorizontal.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor.jpg"));
 
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
@@ -442,7 +444,8 @@ namespace SAE_TANK
         public void InitialiseMurs()
         {
             Rectangle[] mur = new Rectangle[20];
-            int x = 300 + 180, y = 50, largeur = 20, hauteur = 175,compteur=0;
+            Rectangle[] murH = new Rectangle[25];
+            int x = 300 + 180, y = 35, largeur = 20, hauteur = 175,compteur=0;
             for (int i = 0; i < mur.Length; i++)
             {
                 mur[i] = new Rectangle();
@@ -452,13 +455,36 @@ namespace SAE_TANK
                 mur[i].VerticalAlignment = VerticalAlignment.Top;
                 mur[i].HorizontalAlignment = HorizontalAlignment.Left;
                 mur[i].Margin = new Thickness(x, y, 0, 0);
-                mur[i].Fill = tank1;
+                mur[i].Fill = murVertival;
                 this.Le_Canvas.Children.Add(mur[i]);
                 x = x + 190;
                 if(compteur > 3)
                 {
                     x = 480;
-                    y = y + 175;
+                    y = y + 195;
+                    compteur = 0;
+                }
+            }
+            x = 305;
+            y = 210;
+            largeur = 175;
+            hauteur = 20;
+            for (int i = 0; i < mur.Length; i++)
+            {
+                murH[i] = new Rectangle();
+                compteur++;
+                murH[i].Width = largeur;
+                murH[i].Height = hauteur;
+                murH[i].VerticalAlignment = VerticalAlignment.Top;
+                murH[i].HorizontalAlignment = HorizontalAlignment.Left;
+                murH[i].Margin = new Thickness(x, y, 0, 0);
+                murH[i].Fill = murHorizontal;
+                this.Le_Canvas.Children.Add(murH[i]);
+                x = x + 190;
+                if (compteur > 4)
+                {
+                    x = 305;
+                    y = y + 195;
                     compteur = 0;
                 }
             }
