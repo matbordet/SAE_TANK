@@ -60,10 +60,7 @@ namespace SAE_TANK
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
-<<<<<<< HEAD
-=======
-            
->>>>>>> 5f5afe24a5b6c0a889e9eb306dc7148937c9166c
+
 
         }
         private void GameEngine(object sender, EventArgs e)

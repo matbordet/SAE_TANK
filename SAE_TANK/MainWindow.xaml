@@ -11,7 +11,7 @@
         <Rectangle Height="984" Stroke="Black" Width="300" Fill="DeepSkyBlue" />
         <Rectangle Height="984" Stroke="Black" Width="300" Fill="red" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1250"/>
 
-        <Rectangle Height="160" Stroke="Black" Width="303" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Rectangle Height="160" Stroke="Black" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Rectangle Height="160" Stroke="Black" Width="303" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1250"/>
 
         <Rectangle x:Name="fond_Arene" Height="950" Canvas.Left="300" Stroke="Black" Width="950" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="34"/>
