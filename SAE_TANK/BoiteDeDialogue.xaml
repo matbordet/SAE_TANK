@@ -9,25 +9,25 @@
     <Canvas>
         <Rectangle x:Name="backgroundMenu" HorizontalAlignment="Center" Height="450" Fill="Orange" VerticalAlignment="Center" Width="800"/>
 
-        <Button x:Name="Tank_Bleu_1" HorizontalAlignment="Left" Margin="20,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_bleu_1" HorizontalAlignment="Left" Margin="20,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_bleu_1_S.png"></Image>
         </Button>
-        <Button x:Name="Tank_Bleu_2" HorizontalAlignment="Left" Margin="120,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_bleu_2" HorizontalAlignment="Left" Margin="120,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_bleu_2_S.png"></Image>
         </Button>
-        <Button x:Name="Tank_Bleu_3" HorizontalAlignment="Left" Margin="220,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_bleu_3" HorizontalAlignment="Left" Margin="220,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_bleu_1_S.png"/>
         </Button>
 
 
 
-        <Button x:Name="Tank_Rouge_1" HorizontalAlignment="right" Margin="700,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_rouge_1" HorizontalAlignment="right" Margin="700,295,0,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_Rouge_1_S.png"></Image>
         </Button>
-        <Button x:Name="Tank_Rouge_2" HorizontalAlignment="right" Margin="600,295,120,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_rouge_2" HorizontalAlignment="right" Margin="600,295,120,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_Rouge_2_S.png"></Image>
         </Button>
-        <Button x:Name="Tank_Rouge_3" HorizontalAlignment="right" Margin="500,295,220,0" VerticalAlignment="Top" Width="80" Height="80">
+        <Button x:Name="Tank_rouge_3" HorizontalAlignment="right" Margin="500,295,220,0" VerticalAlignment="Top" Width="80" Height="80">
             <Image Source="image_Tanks/Tank_Rouge_3_S.png"></Image>
         </Button>
 
