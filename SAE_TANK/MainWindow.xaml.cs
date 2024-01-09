@@ -268,6 +268,7 @@ namespace SAE_TANK
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                     Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    x.Tag = "bullet_E_1";
                 }
 
             }
@@ -277,9 +278,9 @@ namespace SAE_TANK
                 {
                     // si c’est un tir joueur on le déplace vers le haut
                     Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
-
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    x.Tag = "bullet_N_1";
                 }
             }
             else if (axes_J1 == "S1") 
@@ -291,12 +292,29 @@ namespace SAE_TANK
 
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    x.Tag = "bullet_S_1";
                 }
             }
+
             if((string)x.Tag == "bullet_W_1")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+            }
+            else if ((string)x.Tag == "bullet_E_1")
+            {
+                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+            }
+            else if (x is Rectangle && (string)x.Tag == "bullet_N_1")
+            {
+                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+                Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+            }
+            else if (x is Rectangle && (string)x.Tag == "bullet_S_1")
+            {
+                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
             }
             //J2
             if (axes_J2 == "W2")
