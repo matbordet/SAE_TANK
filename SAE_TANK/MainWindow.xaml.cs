@@ -147,7 +147,7 @@ namespace SAE_TANK
                     
                 };
 
-                
+
                 Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) + newBullet.Height + 50);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                 Le_Canvas.Children.Add(newBullet);
@@ -300,21 +300,25 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                
             }
             else if ((string)x.Tag == "bullet_E_1")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_N_1")
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_S_1")
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                
             }
             //J2
             if (axes_J2 == "W2")
@@ -323,6 +327,7 @@ namespace SAE_TANK
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                     Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    x.Tag = "bullet_W_2";
                 }
 
             }
@@ -332,6 +337,7 @@ namespace SAE_TANK
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                     Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    x.Tag = "bullet_E_2";
                 }
 
             }
@@ -344,6 +350,7 @@ namespace SAE_TANK
 
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    x.Tag = "bullet_N_2";
                 }
             }
             else if (axes_J2 == "S2")
@@ -355,7 +362,32 @@ namespace SAE_TANK
 
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    x.Tag = "bullet_S_2";
                 }
+            }
+            if ((string)x.Tag == "bullet_W_2")
+            {
+                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+
+            }
+            else if ((string)x.Tag == "bullet_E_2")
+            {
+                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+
+            }
+            else if (x is Rectangle && (string)x.Tag == "bullet_N_2")
+            {
+                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+                Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+            }
+            else if (x is Rectangle && (string)x.Tag == "bullet_S_2")
+            {
+                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
             }
             if (Canvas.GetTop(x) < 10||Canvas.GetLeft(x) < 10|| Canvas.GetTop(x) > 1010 || Canvas.GetLeft(x) > 1910)
             {
