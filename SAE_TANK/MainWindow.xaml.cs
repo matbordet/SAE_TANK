@@ -151,7 +151,7 @@ namespace SAE_TANK
                 };
 
 
-                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1)  + Rect_Tank_J1.Height/2);
+                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) - newBullet.Height + Rect_Tank_J1.Height / 2);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                 Le_Canvas.Children.Add(newBullet);
             }
@@ -188,7 +188,7 @@ namespace SAE_TANK
                     Fill = Brushes.White,
                     Stroke = Brushes.Red
                 };
-                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height+ Rect_Tank_J2.Width/2);
+                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height + Rect_Tank_J2.Width/ 2);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
                 Le_Canvas.Children.Add(newBullet);
             }
