@@ -24,6 +24,7 @@ namespace SAE_TANK
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1 = false;
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
@@ -54,15 +55,16 @@ namespace SAE_TANK
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
+            
 
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
 
-
         }
         private void GameEngine(object sender, EventArgs e)
         {
+            InitialiseMurs();
             MovePlayer();
             {
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
@@ -438,6 +440,15 @@ namespace SAE_TANK
 
         public void InitialiseMurs()
         {
+            Rectangle mur = new Rectangle();
+            int x = 300 + 180, y = 50, largeur=20,hauteur=175;
+            mur.Width = largeur;
+            mur.Height = hauteur;
+            mur.VerticalAlignment = VerticalAlignment.Top;
+            mur.HorizontalAlignment = HorizontalAlignment.Left;
+            mur.Margin = new Thickness(x,y,0,0);
+            mur.Fill = tank1;
+            this.Le_Canvas.Children.Add(mur);
 
         }
 
