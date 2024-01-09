@@ -38,6 +38,7 @@ namespace SAE_TANK
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
+
         public string axes_J1 = "N1";
         public string axes_J2 = "N2";
         public MainWindow()
@@ -58,6 +59,7 @@ namespace SAE_TANK
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
 
+
         }
         private void GameEngine(object sender, EventArgs e)
         {
@@ -70,6 +72,7 @@ namespace SAE_TANK
                 
             }
             RemoveItemsRemove();
+
         }
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
@@ -403,6 +406,11 @@ namespace SAE_TANK
                 // on les enlève du canvas
                 Le_Canvas.Children.Remove(y);
             }
+        }
+
+        public void InitialiseMurs()
+        {
+
         }
 
     }
