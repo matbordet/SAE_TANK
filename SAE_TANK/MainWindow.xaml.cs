@@ -146,11 +146,8 @@ namespace SAE_TANK
                     Stroke = Brushes.Red
                     
                 };
-                if(Canvas.GetTop(newBullet)<Canvas.GetTop(Rect_Tank_J2)+1)
-                    {
-                    newBullet.Tag = "bullet1";
-                    lb_Test.Content = "est passé dessus";
-                    }
+
+                
                 Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) + newBullet.Height + 50);
                 Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                 Le_Canvas.Children.Add(newBullet);
@@ -252,13 +249,16 @@ namespace SAE_TANK
         }
         public void MoveAndTestBulletTank(Rectangle x)
         {
+            
             //J1
             if(axes_J1 =="W1")
             {
+                
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                     Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    x.Tag = "bullet_W_1";
                 }
                
             }
@@ -292,6 +292,11 @@ namespace SAE_TANK
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 }
+            }
+            if((string)x.Tag == "bullet_W_1")
+            {
+                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
             }
             //J2
             if (axes_J2 == "W2")
