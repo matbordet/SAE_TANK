@@ -369,31 +369,43 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-
+                if (Canvas.GetLeft(x) < 10 ||Canvas.GetLeft(x) > 1910)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
             }
             else if ((string)x.Tag == "bullet_E_2")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-
+                if (Canvas.GetLeft(x) < 10 || Canvas.GetLeft(x) > 1910)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_N_2")
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
+                if (Canvas.GetTop(x) < 10 ||Canvas.GetTop(x) > 1010)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_S_2")
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
+                if (Canvas.GetTop(x) < 10 ||Canvas.GetTop(x) > 1010)
+                {
+                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
+                    itemsToRemove.Add(x);
+                }
             }
-            if (Canvas.GetTop(x) < 10||Canvas.GetLeft(x) < 10|| Canvas.GetTop(x) > 1010 || Canvas.GetLeft(x) > 1910)
-            {
-                // si c’est le cas on l’ajoute à la liste des éléments à supprimer
-                itemsToRemove.Add(x);
-            }
+           
         }
 
         public void RemoveItemsRemove()
