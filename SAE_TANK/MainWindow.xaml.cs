@@ -60,6 +60,10 @@ namespace SAE_TANK
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
+<<<<<<< HEAD
+=======
+            
+>>>>>>> 5f5afe24a5b6c0a889e9eb306dc7148937c9166c
 
         }
         private void GameEngine(object sender, EventArgs e)
@@ -217,8 +221,8 @@ namespace SAE_TANK
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_N.png"));
             }
-            else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Width <
-            Application.Current.MainWindow.Width)
+            else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height <
+            Application.Current.MainWindow.Height)
             {
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
@@ -243,8 +247,8 @@ namespace SAE_TANK
                 tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
             }
-            else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J2.Width <
-            Application.Current.MainWindow.Width)
+            else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J2.Height <
+            Application.Current.MainWindow.Height)
             {
                 tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_S.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
@@ -438,19 +442,7 @@ namespace SAE_TANK
             }
         }
 
-        public void InitialiseMurs()
-        {
-            Rectangle mur = new Rectangle();
-            int x = 300 + 180, y = 50, largeur=20,hauteur=175;
-            mur.Width = largeur;
-            mur.Height = hauteur;
-            mur.VerticalAlignment = VerticalAlignment.Top;
-            mur.HorizontalAlignment = HorizontalAlignment.Left;
-            mur.Margin = new Thickness(x,y,0,0);
-            mur.Fill = tank1;
-            this.Le_Canvas.Children.Add(mur);
-
-        }
+       
 
     }
 }
