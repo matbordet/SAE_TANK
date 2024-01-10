@@ -19,6 +19,8 @@ namespace SAE_TANK
     /// </summary>
     public partial class BoiteDeDialogue : Window
     {
+        private int nb_TankJ1=1;
+        private int nb_TankJ2=1;
         public BoiteDeDialogue()
         {
             InitializeComponent();
@@ -48,6 +50,41 @@ namespace SAE_TANK
             Tank_rouge_3.Background = tankR3;
 
 
+        }
+
+        private void Tank_bleu_1_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ1 = 1;
+        }
+
+        private void Tank_bleu_2_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ1 = 2;
+        }
+
+        private void Tank_bleu_3_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ1 = 3;
+        }
+
+        private void Tank_rouge_3_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ2 = 3;
+        }
+
+        private void Tank_rouge_2_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ2 = 2;
+        }
+
+        private void Tank_rouge_1_Click(object sender, RoutedEventArgs e)
+        {
+            nb_TankJ2 = 1;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }
