@@ -21,6 +21,8 @@ namespace SAE_TANK
     {
         private int nb_TankJ1=1;
         private int nb_TankJ2=1;
+        public string nom_j1 = "";
+        public string nom_j2 = "";
         public BoiteDeDialogue()
         {
             InitializeComponent();
@@ -49,7 +51,8 @@ namespace SAE_TANK
             Tank_rouge_2.Background = tankR2;
             Tank_rouge_3.Background = tankR3;
 
-
+            nom_j1 = tb_J1.Text;
+            nom_j2 = tb_J2.Text;
         }
 
         private void Tank_bleu_1_Click(object sender, RoutedEventArgs e)
