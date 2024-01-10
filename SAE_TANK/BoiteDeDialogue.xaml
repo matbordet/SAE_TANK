@@ -34,11 +34,11 @@
 
 
 
-        <Label Content="JOUEUR 1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="30" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" Foreground="#FF1495E8"/>
-        <Label Content="JOUEUR 2" HorizontalAlignment="right" Margin="540,100,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="30" FontFamily="Gill Sans Ultra Bold" Foreground="#FFC71E1E"/>
+        <Label x:Name="lb_Joueur1" Content="JOUEUR 1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="30" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" Foreground="#FF1495E8"/>
+        <Label x:Name="lb_Joueur2" Content="JOUEUR 2" HorizontalAlignment="right" Margin="540,100,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="30" FontFamily="Gill Sans Ultra Bold" Foreground="#FFC71E1E"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="100,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="right" Margin="580,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_J1" HorizontalAlignment="Left" Margin="100,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 1" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tb_J2" HorizontalAlignment="right" Margin="580,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 2" VerticalAlignment="Top" Width="120"/>
 
         <Button Content="Demarrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="100" Canvas.Left="325" Canvas.Top="145" Click="Button_Click"/>
 
