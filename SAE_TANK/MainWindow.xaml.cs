@@ -457,23 +457,23 @@ namespace SAE_TANK
         {
             Rect tankRect = new Rect(Canvas.GetLeft(tank), Canvas.GetTop(tank), tank.Width, tank.Height);
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < murCollision.Length; i++)
             {
                 if (murCollision[i].IntersectsWith(tankRect))
                 {
                     switch (direction)
                     {
                         case "gauche":
-                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) + Rect_Tank_J1_Speed);
+                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) + Rect_Tank_J1_Speed+1);
                             break;
                         case "droite":
-                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) - Rect_Tank_J1_Speed);
+                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) - Rect_Tank_J1_Speed+1);
                             break;
                         case "haut":
-                            Canvas.SetTop(tank, Canvas.GetTop(tank) + Rect_Tank_J1_Speed);
+                            Canvas.SetTop(tank, Canvas.GetTop(tank) + Rect_Tank_J1_Speed+1);
                             break;
                         case "bas":
-                            Canvas.SetTop(tank, Canvas.GetTop(tank) - Rect_Tank_J1_Speed);
+                            Canvas.SetTop(tank, Canvas.GetTop(tank) - Rect_Tank_J1_Speed+1);
                             break;
                     }
 
@@ -502,10 +502,10 @@ namespace SAE_TANK
                 mur[i].HorizontalAlignment = HorizontalAlignment.Left;
                 mur[i].Margin = new Thickness(x, y, 0, 0);
                 mur[i].Fill = murVertival;
-                this.Le_Canvas.Children.Add(mur[i]);
-                murCollision[i] = new Rect(Canvas.GetLeft(mur[i]), Canvas.GetTop(mur[i]), mur[i].Width, mur[i].Height);
                 if (random.Next(3) != 0)
                 {
+                this.Le_Canvas.Children.Add(mur[i]);
+                murCollision[i] = new Rect(x, y, largeur, hauteur);
                 }
                 
                 x = x + 190;
@@ -530,11 +530,11 @@ namespace SAE_TANK
                 murH[i].HorizontalAlignment = HorizontalAlignment.Left;
                 murH[i].Margin = new Thickness(x, y, 0, 0);
                 murH[i].Fill = murHorizontal;
-                this.Le_Canvas.Children.Add(murH[i]);
-                murCollision[i + mur.Length] = new Rect(Canvas.GetLeft(murH[i]), Canvas.GetTop(murH[i]), murH[i].Width, murH[i].Height);
                 if (random.Next(3) != 0) 
                 {
                     
+                this.Le_Canvas.Children.Add(murH[i]);
+                murCollision[i + mur.Length] = new Rect(x, y, largeur, hauteur);
                 }
                 
                 x = x + 190;
