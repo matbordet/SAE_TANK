@@ -81,5 +81,10 @@ namespace SAE_TANK
         {
             nb_TankJ2 = 1;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }
