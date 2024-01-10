@@ -258,7 +258,7 @@ namespace SAE_TANK
                 tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
             }
-            else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J2.Height <950 && CollisionMurJoueur(Rect_Tank_J2, "bas") == false)
+            else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2.Height <980 && CollisionMurJoueur(Rect_Tank_J2, "bas") == false)
             {
                 tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_S.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
@@ -464,16 +464,16 @@ namespace SAE_TANK
                     switch (direction)
                     {
                         case "gauche":
-                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) + Rect_Tank_J1_Speed+1);
+                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) + Rect_Tank_J1_Speed+5);
                             break;
                         case "droite":
-                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) - Rect_Tank_J1_Speed+1);
+                            Canvas.SetLeft(tank, Canvas.GetLeft(tank) - Rect_Tank_J1_Speed+5);
                             break;
                         case "haut":
-                            Canvas.SetTop(tank, Canvas.GetTop(tank) + Rect_Tank_J1_Speed+1);
+                            Canvas.SetTop(tank, Canvas.GetTop(tank) + Rect_Tank_J1_Speed+5);
                             break;
                         case "bas":
-                            Canvas.SetTop(tank, Canvas.GetTop(tank) - Rect_Tank_J1_Speed+1);
+                            Canvas.SetTop(tank, Canvas.GetTop(tank) - Rect_Tank_J1_Speed+5);
                             break;
                     }
 
