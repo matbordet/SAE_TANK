@@ -62,7 +62,7 @@ namespace SAE_TANK
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
             murVertival.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical.jpg"));
             murHorizontal.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor.jpg"));
-
+            
             InitialiseMurs();
             InitialiseCollisionMur();
             Console.WriteLine(murCollision);
