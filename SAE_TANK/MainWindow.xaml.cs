@@ -39,6 +39,8 @@ namespace SAE_TANK
         Rectangle[] murH = new Rectangle[25];
         Rect[] murCollision = new Rect[46];
 
+        
+
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
 
         ImageBrush murVertival = new ImageBrush();
@@ -62,7 +64,8 @@ namespace SAE_TANK
             murHorizontal.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor.jpg"));
 
             InitialiseMurs();
-
+            InitialiseCollisionMur();
+            Console.WriteLine(murCollision);
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
@@ -89,6 +92,7 @@ namespace SAE_TANK
                 }
                 
             }
+            CollisionMurJoueur();
             RemoveItemsRemove();
 
         }
@@ -214,28 +218,27 @@ namespace SAE_TANK
         public void MovePlayer()
         {
 
-            Rect tank_bleu = new Rect(Canvas.GetLeft(Rect_Tank_J1), Canvas.GetTop(Rect_Tank_J1), Rect_Tank_J1.Width , Rect_Tank_J1.Height);
-            Rect tank_rouge = new Rect(Canvas.GetLeft(Rect_Tank_J2), Canvas.GetTop(Rect_Tank_J2), Rect_Tank_J2.Width , Rect_Tank_J2.Height);
+            
 
             //deplacement du joueur 1
-            if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 300 && CollisionMurJoueur(tank_bleu)==false)
+            if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 300 )
             {
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_W.png"));
                 Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) - Rect_Tank_J1_Speed);
             }
-            else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width < 1250 && CollisionMurJoueur(tank_bleu) == false)
+            else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width < 1250 )
             {
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_E.png"));
                 Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1_Speed);
             }
 
 
-            if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 30 && CollisionMurJoueur(tank_bleu) == false)
+            else if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 30)
             {
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_N.png"));
             }
-            else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height <980 && CollisionMurJoueur(tank_bleu) == false)
+            else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height < 980)
             {
                 Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
                 tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
@@ -254,7 +257,7 @@ namespace SAE_TANK
             }
 
 
-            if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 30)
+            else if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 30)
             {
                 tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_N.png"));
                 Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
@@ -269,8 +272,7 @@ namespace SAE_TANK
         }
         public void MoveAndTestBulletTank(Rectangle x)
         {
-            
-
+           
             //J1
             if(axes_J1 =="W1")
             {
@@ -455,19 +457,28 @@ namespace SAE_TANK
         }
 
         
-        public bool CollisionMurJoueur(Rect tank)
+        public bool CollisionMurJoueur()
         {
-            for (int i = 0; i < murCollision.Length; i++)
+            Rect tank_bleu = new Rect(Canvas.GetLeft(Rect_Tank_J1), Canvas.GetTop(Rect_Tank_J1), Rect_Tank_J1.Width, Rect_Tank_J1.Height);
+            Rect tank_rouge = new Rect(Canvas.GetLeft(Rect_Tank_J2), Canvas.GetTop(Rect_Tank_J2), Rect_Tank_J2.Width, Rect_Tank_J2.Height);
+            for (int i = 0; i < 20; i++)
             {
-                if (murCollision[i].IntersectsWith(tank) == true)
+                if (murCollision[i].IntersectsWith(tank_bleu) )
                 {
-                    return true;
+                    mur[i].Fill=tank1;
                 }
             }
             return false;
             
         }
+        public void InitialiseCollisionMur()
+        {
+            for (int i = 0; i < mur.Length; i++)
+            {
+                murCollision[i] = new Rect(Canvas.GetLeft(mur[i]), Canvas.GetTop(mur[i]), mur[i].Width, mur[i].Height);
+            }
 
+        }
         public void InitialiseMurs()
         {
             Random random = new Random();
@@ -483,10 +494,10 @@ namespace SAE_TANK
                 mur[i].HorizontalAlignment = HorizontalAlignment.Left;
                 mur[i].Margin = new Thickness(x, y, 0, 0);
                 mur[i].Fill = murVertival;
+                this.Le_Canvas.Children.Add(mur[i]);
+                murCollision[i] = new Rect(Canvas.GetLeft(mur[i]), Canvas.GetTop(mur[i]), mur[i].Width, mur[i].Height);
                 if (random.Next(3) != 0)
                 {
-                    this.Le_Canvas.Children.Add(mur[i]);
-                    murCollision[i]= new Rect(Canvas.GetLeft(mur[i]), Canvas.GetTop(mur[i]), mur[i].Width , mur[i].Height);
                 }
                 
                 x = x + 190;
@@ -511,9 +522,10 @@ namespace SAE_TANK
                 murH[i].HorizontalAlignment = HorizontalAlignment.Left;
                 murH[i].Margin = new Thickness(x, y, 0, 0);
                 murH[i].Fill = murHorizontal;
+                murCollision[i] = new Rect(Canvas.GetLeft(mur[i]), Canvas.GetTop(mur[i]), mur[i].Width, mur[i].Height);
+                this.Le_Canvas.Children.Add(murH[i]);
                 if (random.Next(3) != 0) 
                 {
-                    this.Le_Canvas.Children.Add(murH[i]);
                     
                 }
                 
