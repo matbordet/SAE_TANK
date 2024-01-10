@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -65,6 +66,7 @@ namespace SAE_TANK
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
+            
             
 
             dispatcherTimer.Tick += GameEngine;
@@ -455,14 +457,15 @@ namespace SAE_TANK
         
         public bool CollisionMurJoueur(Rect tank)
         {
-            foreach(Rect y in murCollision)
+            for (int i = 0; i < murCollision.Length; i++)
             {
-                if (tank.IntersectsWith(y))
+                if (murCollision[i].IntersectsWith(tank) == true)
                 {
                     return true;
                 }
             }
             return false;
+            
         }
 
         public void InitialiseMurs()
