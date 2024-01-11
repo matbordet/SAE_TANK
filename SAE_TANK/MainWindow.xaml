@@ -22,12 +22,9 @@
         <Label x:Name="lb_J1" Content="Joueur1" Height="95" Canvas.Top="10" Width="300" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
         <Label x:Name="lb_J2" Content="Joueur2" Height="95" Canvas.Top="12" Width="300" VerticalAlignment="Top" Canvas.Left="1250" HorizontalAlignment="Center" FontSize="48"/>
         <Label x:Name="lb_Test" Content="" Canvas.Left="950" Canvas.Top="425" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130"/>
-        <Rectangle x:Name="coeur_1_J1" Height="75" Canvas.Top="84" Width="75" Canvas.Left="31" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Rectangle x:Name="coeur_3_J1" Height="75" Canvas.Top="84" Width="75" Canvas.Left="191" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Rectangle x:Name="coeur_2_J1" Height="75" Canvas.Top="84" Width="75" Canvas.Left="111" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Rectangle x:Name="coeur_1_J2" Height="75" Canvas.Top="85" Width="75" Canvas.Left="1280" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Rectangle x:Name="coeur_3_J2" Height="75" Canvas.Top="85" Width="75" Canvas.Left="1440" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <Rectangle x:Name="coeur_2_J2" Height="74" Canvas.Top="85" Width="75" Canvas.Left="1360" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle x:Name="coeur_J1" Fill="orange" Height="75" Canvas.Top="84" Width="250" Canvas.Left="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Rectangle x:Name="coeur_J2" Fill="Orange" Height="75" Canvas.Top="85" Width="250" Canvas.Left="1275" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
 
 
     </Canvas>

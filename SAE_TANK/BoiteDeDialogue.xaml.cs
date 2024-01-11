@@ -50,7 +50,7 @@ namespace SAE_TANK
             tankR1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_1_S.png"));
             tankR2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_2_S.png"));
             tankR3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_S.png"));
-            fondVert.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "carre_vert.png"));
+            
 
             Tank_bleu_1.Background = tankB1;
             Tank_bleu_2.Background = tankB2;

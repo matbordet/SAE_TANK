@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
@@ -35,6 +36,9 @@ namespace SAE_TANK
         private int Rect_Tank_J2_Speed = 5;
         private int bulletTank2Speed = 15;
 
+        private int vie_J1 = 3;
+        private int vie_J2 = 3;
+
         private string direction_J1 = "S";
         private string direction_J2 = "N";
         public int numero_J1 = 1;
@@ -53,8 +57,9 @@ namespace SAE_TANK
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
-        ImageBrush vie_Pleine = new ImageBrush();
-        ImageBrush vie_Vide = new ImageBrush();
+        ImageBrush sprite_vie_J1 = new ImageBrush();
+        ImageBrush sprite_vie_J2 = new ImageBrush();
+     
 
         
         public MainWindow()
@@ -76,8 +81,8 @@ namespace SAE_TANK
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
             murVertival.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical.jpg"));
             murHorizontal.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor.jpg"));
-            vie_Pleine.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Plein.png"));
-            vie_Vide.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Vide.png"));
+            sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
+            sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
 
             InitialiseMurs();
             
@@ -85,13 +90,8 @@ namespace SAE_TANK
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
-            coeur_1_J1.Fill = vie_Pleine;
-            coeur_2_J1.Fill = vie_Pleine;
-            coeur_3_J1.Fill = vie_Pleine;
-
-            coeur_1_J2.Fill = vie_Pleine;
-            coeur_2_J2.Fill = vie_Pleine;
-            coeur_3_J2.Fill = vie_Pleine;
+            coeur_J1.Fill = sprite_vie_J1;
+            coeur_J2.Fill = sprite_vie_J2;
 
             lb_J1.Content = dialogue.tb_J1.Text;
             lb_J2.Content = dialogue.tb_J2.Text;
@@ -115,6 +115,7 @@ namespace SAE_TANK
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
             CollisionMurTank(Rect_Tank_J2, direction_J2);
+            TestVieJoueur();
             
 
             
@@ -308,7 +309,7 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
-                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    
                     x.Tag = "bullet_W_1";
                 }
                
@@ -318,7 +319,7 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
-                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
+                    
                     x.Tag = "bullet_E_1";
                 }
 
@@ -330,7 +331,7 @@ namespace SAE_TANK
                     // si c’est un tir joueur on le déplace vers le haut
                     Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    
                     x.Tag = "bullet_N_1";
                 }
             }
@@ -342,16 +343,17 @@ namespace SAE_TANK
                     Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
 
                     // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    
                     x.Tag = "bullet_S_1";
                 }
             }
-            CollisionBalleTankJ1(Rect_Tank_J1, x);
+
+
             if((string)x.Tag == "bullet_E_1")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2,x, "R") == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -360,7 +362,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x, "R") == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -369,7 +371,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x, "R") == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -378,7 +380,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x,"R") == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -391,7 +393,6 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
-                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                     x.Tag = "bullet_W_2";
                 }
 
@@ -401,7 +402,6 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
-                    Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                     x.Tag = "bullet_E_2";
                 }
 
@@ -411,7 +411,6 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
-                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     x.Tag = "bullet_N_2";
                 }
             }
@@ -420,7 +419,6 @@ namespace SAE_TANK
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
-                    Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     x.Tag = "bullet_S_2";
                 }
             }
@@ -428,7 +426,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x)==true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x, "B") == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -438,7 +436,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x) == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x, "B") == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -448,7 +446,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
+                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x,"B") == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -458,7 +456,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x,"B") == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -535,17 +533,27 @@ namespace SAE_TANK
                         }
             }
         }
-        public void CollisionBalleTankJ1(Rectangle tank, Rectangle balle) 
+        public void TestVieJoueur()
         {
-            Rect tankRect = new Rect(Canvas.GetTop(tank), Canvas.GetLeft(tank),tank.Width,tank.Height);
-            Rect balleRect = new Rect(Canvas.GetLeft(balle), Canvas.GetTop(balle), balle.Width, balle.Height);
-
-
-            if (balleRect.IntersectsWith(tankRect))
+            if (vie_J1 >=0 && vie_J2 >= 0)
             {
-                lb_Test.Content = "ca marche";
+                sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + vie_J1 +"_coeur.png"));
+                sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + vie_J2 +"_coeur.png"));
+            }
+        }
+        public bool CollisionBalleTank(Rectangle tank, Rectangle balleRect,string couleur) 
+        {
+            Rect tankRect = new Rect(Canvas.GetLeft(tank), Canvas.GetTop(tank), tank.Width, tank.Height);
+            Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
+
+            if (balle.IntersectsWith(tankRect))
+            {
+                if (couleur == "B") { vie_J1--; }
+                else if (couleur == "R") { vie_J2--; }
+                return true;
                 
             }
+            return false;
         }
         public void InitialiseMurs()
 
