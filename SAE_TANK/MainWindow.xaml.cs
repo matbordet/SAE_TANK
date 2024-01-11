@@ -41,7 +41,7 @@ namespace SAE_TANK
         public int numero_J2 = 1;
 
         Rectangle[] mur = new Rectangle[20];
-        Rectangle[] murH = new Rectangle[25];
+        Rectangle[] murH = new Rectangle[20];
         Rect[] murCollision = new Rect[46];
 
         
@@ -481,6 +481,15 @@ namespace SAE_TANK
             {
                 if (murCollision[i].IntersectsWith(balle))
                 {
+                    murCollision[i]= Rect.Empty;
+                    if (i < 20)
+                    {
+                        mur[i].Margin = new Thickness(-100, -100, 0, 0);
+                    }
+                    else
+                    {
+                        murH[i-20].Margin = new Thickness(-100, -100, 0, 0);
+                    }
                     return true;   
                 }
             }
@@ -556,7 +565,7 @@ namespace SAE_TANK
             y = 210;
             largeur = 175;
             hauteur = 20;
-            for (int i = 0; i < mur.Length; i++)
+            for (int i = 0; i < murH.Length; i++)
             {
                 murH[i] = new Rectangle();
                 compteur++;
