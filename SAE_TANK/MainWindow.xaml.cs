@@ -349,7 +349,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -358,7 +358,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -367,7 +367,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -376,7 +376,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
                 {
                     itemsToRemove.Add(x);
                 }
@@ -426,7 +426,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x)==true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -436,7 +436,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x) == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -446,7 +446,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980)
+                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -456,7 +456,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -474,17 +474,17 @@ namespace SAE_TANK
             }
         }
 
-        public void CollisionMurBalle(Rect balle)
+        public bool CollisionMurBalle(Rectangle balleRect)
         {
+            Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
             for (int i = 0; i < murCollision.Length; i++)
             {
                 if (murCollision[i].IntersectsWith(balle))
                 {
-
-
-                    
+                    return true;   
                 }
             }
+            return false;
         }
 
 
@@ -496,8 +496,6 @@ namespace SAE_TANK
             {
                 if (murCollision[i].IntersectsWith(tankRect))
                 {
-                   
-
                     return true;
                 }
             }
