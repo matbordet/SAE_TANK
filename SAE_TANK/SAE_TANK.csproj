@@ -98,6 +98,15 @@
     <None Update="mur_hor.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="mur_hor1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mur_hor2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="mur_hor3.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="mur_vertical.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
