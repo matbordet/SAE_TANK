@@ -299,7 +299,7 @@ namespace SAE_TANK
         public void MoveAndTestBulletTank(Rectangle x)
         {
            
-            //J1
+            //J1----------------------------------------
             if(direction_J1 =="W")
             {
                 
@@ -349,9 +349,8 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 0 || Canvas.GetLeft(x) > 1910)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
                 }
             }
@@ -359,9 +358,8 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 0 || Canvas.GetLeft(x) > 1910)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
                 }
             }
@@ -369,9 +367,8 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 0 || Canvas.GetTop(x) > 1010)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
                 }
             }
@@ -379,13 +376,14 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 0 || Canvas.GetTop(x) > 1010)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
-                    // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
                 }
             }
-            //J2
+
+
+            //J2---------------------------
             if (direction_J2 == "W")
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
@@ -410,10 +408,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    // si c’est un tir joueur on le déplace vers le haut
                     Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
-
-                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     x.Tag = "bullet_N_2";
                 }
@@ -422,10 +417,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    // si c’est un tir joueur on le déplace vers le haut
                     Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
-
-                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
                     Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     x.Tag = "bullet_S_2";
                 }
@@ -434,7 +426,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 0 ||Canvas.GetLeft(x) > 1910)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -444,7 +436,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 0 || Canvas.GetLeft(x) > 1910)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -454,7 +446,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 0 ||Canvas.GetTop(x) > 1050)
+                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -464,7 +456,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 0 ||Canvas.GetTop(x) > 1010)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -479,6 +471,19 @@ namespace SAE_TANK
             {
                 // on les enlève du canvas
                 Le_Canvas.Children.Remove(y);
+            }
+        }
+
+        public void CollisionMurBalle(Rect balle)
+        {
+            for (int i = 0; i < murCollision.Length; i++)
+            {
+                if (murCollision[i].IntersectsWith(balle))
+                {
+
+
+                    
+                }
             }
         }
 
