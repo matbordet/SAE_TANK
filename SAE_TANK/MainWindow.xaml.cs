@@ -109,11 +109,13 @@ namespace SAE_TANK
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
                     MoveAndTestBulletTank(x);
+                    
                 }
             }
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
             CollisionMurTank(Rect_Tank_J2, direction_J2);
+            
 
             
 
@@ -344,7 +346,7 @@ namespace SAE_TANK
                     x.Tag = "bullet_S_1";
                 }
             }
-
+            CollisionBalleTankJ1(Rect_Tank_J1, x);
             if((string)x.Tag == "bullet_E_1")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
@@ -462,7 +464,8 @@ namespace SAE_TANK
                     itemsToRemove.Add(x);
                 }
             }
-           
+            
+
         }
 
         public void RemoveItemsRemove()
@@ -532,7 +535,20 @@ namespace SAE_TANK
                         }
             }
         }
+        public void CollisionBalleTankJ1(Rectangle tank, Rectangle balle) 
+        {
+            Rect tankRect = new Rect(Canvas.GetTop(tank), Canvas.GetLeft(tank),tank.Width,tank.Height);
+            Rect balleRect = new Rect(Canvas.GetLeft(balle), Canvas.GetTop(balle), balle.Width, balle.Height);
+
+
+            if (balleRect.IntersectsWith(tankRect))
+            {
+                lb_Test.Content = "ca marche";
+                RemoveItemsRemove();
+            }
+        }
         public void InitialiseMurs()
+
         {
             Random random = new Random();
             
