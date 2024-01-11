@@ -544,7 +544,7 @@ namespace SAE_TANK
             if (balleRect.IntersectsWith(tankRect))
             {
                 lb_Test.Content = "ca marche";
-                RemoveItemsRemove();
+                
             }
         }
         public void InitialiseMurs()
