@@ -18,6 +18,7 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Media;
 
 namespace SAE_TANK
 {
@@ -58,6 +59,9 @@ namespace SAE_TANK
 
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
 
+       
+
+
         ImageBrush murVertical4 = new ImageBrush();
         ImageBrush murVertical3 = new ImageBrush();
         ImageBrush murVertical2 = new ImageBrush();
@@ -71,6 +75,13 @@ namespace SAE_TANK
         ImageBrush sol = new ImageBrush();
         ImageBrush sprite_vie_J1 = new ImageBrush();
         ImageBrush sprite_vie_J2 = new ImageBrush();
+
+        System.Media.SoundPlayer tir_Piou = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/tir_son.wav");
+        System.Media.SoundPlayer murSon = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/mur_son.wav");
+        System.Media.SoundPlayer mortSon = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/mort_son.wav");
+        System.Media.SoundPlayer touche_Son_1 = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/touche_son_1.wav");
+        System.Media.SoundPlayer touche_Son_2 = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/touche_son_2.wav");
+        
      
 
         
@@ -88,6 +99,7 @@ namespace SAE_TANK
             numero_J1 = dialogue.nb_TankJ1;
             numero_J2 = dialogue.nb_TankJ2;
 
+            
             tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_S.png"));
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_N.png"));
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
@@ -104,8 +116,13 @@ namespace SAE_TANK
             sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
             sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
 
+           
+
+
+
             InitialiseMurs();
             
+
             Console.WriteLine(murCollision);
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
@@ -222,6 +239,10 @@ namespace SAE_TANK
                     Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) - newBullet.Height + Rect_Tank_J1.Height / 2);
                     Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                     Le_Canvas.Children.Add(newBullet);
+
+                    
+                    tir_Piou.Play();
+
                 }
             }
             //test controle J2
@@ -261,6 +282,11 @@ namespace SAE_TANK
                     Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height + Rect_Tank_J2.Width/ 2);
                     Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
                     Le_Canvas.Children.Add(newBullet);
+
+                   
+                    
+                    tir_Piou.Play();
+                   
                 }
             }
         }
@@ -516,15 +542,22 @@ namespace SAE_TANK
                         switch (vie_mur[i])
                         {
                             case 3:
+
+                               
                                 mur[i].Fill = murVertical3;
                                 break;
                             case 2:
+                                
+
                                 mur[i].Fill = murVertical2;
                                 break;
                             case 1:
+                                
+
                                 mur[i].Fill = murVertical1;
                                 break;
                             case 0:
+                                murSon.Play();
                                 mur[i].Margin = new Thickness(-100, -100, 0, 0);
                                 murCollision[i] = Rect.Empty;
                                 break;
@@ -539,15 +572,23 @@ namespace SAE_TANK
                         switch (vie_mur[i])
                         {
                             case 3:
+                               
+
                                 murH[i - mur.Length].Fill = murHorizontal3;
                                 break;
                             case 2:
+                                
+
                                 murH[i - mur.Length].Fill = murHorizontal2;
                                 break;
                             case 1:
+                               
+
                                 murH[i - mur.Length].Fill = murHorizontal1;
                                 break;
                             case 0:
+                                murSon.Play();
+
                                 murH[i - mur.Length].Margin = new Thickness(-100, -100, 0, 0);
                                 murCollision[i] = Rect.Empty;
                                 break;
@@ -606,6 +647,7 @@ namespace SAE_TANK
                 sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + vie_J2 +"_coeur.png"));
             }
         }
+
         public bool CollisionBalleTank(Rectangle tank, Rectangle balleRect,string couleur) 
         {
             Rect tankRect = new Rect(Canvas.GetLeft(tank), Canvas.GetTop(tank), tank.Width, tank.Height);
@@ -613,6 +655,7 @@ namespace SAE_TANK
 
             if (balle.IntersectsWith(tankRect))
             {
+                touche_Son_2.Play();
                 if (couleur == "B") { vie_J1--; }
                 else if (couleur == "R") { vie_J2--; }
                 return true;
