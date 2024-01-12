@@ -138,7 +138,7 @@ namespace SAE_TANK
             CollisionMurTank(Rect_Tank_J1, direction_J1);
             CollisionMurTank(Rect_Tank_J2, direction_J2);
             TestVieJoueur();
-            
+            TestWin();
 
             
 
@@ -685,6 +685,14 @@ namespace SAE_TANK
             }
             
 
+        }
+        public void TestWin()
+        {
+            if (vie_J1 == 0 || vie_J2 == 0)
+            {
+                dispatcherTimer.Stop();
+                MessageBox.Show("quoicoucrampté","valentinpagnan",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
         }
 
     }
