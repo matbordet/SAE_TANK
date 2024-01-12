@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,6 +25,7 @@ namespace SAE_TANK
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         private const int DELAI_ENTRE_TIR = 10;
@@ -49,6 +51,7 @@ namespace SAE_TANK
         public int numero_J1 = 1;
         public int numero_J2 = 1;
 
+        private double tempsdejeu;
 
         Rectangle[] mur = new Rectangle[20];
         Rectangle[] murH = new Rectangle[20];
@@ -77,7 +80,7 @@ namespace SAE_TANK
         public MainWindow()
         {
             InitializeComponent();
-
+            lb_pause.Visibility = Visibility.Hidden;
             BoiteDeDialogue dialogue = new BoiteDeDialogue();
             dialogue.ShowDialog();
 
@@ -139,10 +142,16 @@ namespace SAE_TANK
             CollisionMurTank(Rect_Tank_J2, direction_J2);
             TestVieJoueur();
             TestWin();
-
+            Compteur();
             
-
+ }
+        private void Compteur()
+        {
+            tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
+            lb_Compteur.Content = tempsdejeu;
+            
         }
+       
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
         {
@@ -223,6 +232,17 @@ namespace SAE_TANK
                     Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
                     Le_Canvas.Children.Add(newBullet);
                 }
+            }
+            if(e.Key == Key.P)
+            {
+                dispatcherTimer.Stop();
+                lb_pause.Visibility = Visibility.Visible;
+
+            }
+            if(e.Key == Key.Escape)
+            {
+                dispatcherTimer.Start();
+                lb_pause.Visibility = Visibility.Hidden;
             }
             //test controle J2
             if (e.Key == Key.Left)
