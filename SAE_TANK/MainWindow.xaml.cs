@@ -26,23 +26,29 @@ namespace SAE_TANK
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        private const int DELAI_ENTRE_TIR = 10;
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1 = false;
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
 
         private int Rect_Tank_J1_Speed = 5;
         private int bulletTank1Speed = 15;
+        private int delaiTirJ1 = 0;
+
         private int Rect_Tank_J2_Speed = 5;
         private int bulletTank2Speed = 15;
+        private int delaiTirJ2 = 0;
 
         private int vie_J1 = 3;
         private int vie_J2 = 3;
+        private int[] vie_mur = new int[40];
+        private int duree_anim_touche = 0;
 
         private string direction_J1 = "S";
         private string direction_J2 = "N";
         public int numero_J1 = 1;
         public int numero_J2 = 1;
+
 
         Rectangle[] mur = new Rectangle[20];
         Rectangle[] murH = new Rectangle[20];
@@ -52,8 +58,14 @@ namespace SAE_TANK
 
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
 
-        ImageBrush murVertival = new ImageBrush();
-        ImageBrush murHorizontal = new ImageBrush();
+        ImageBrush murVertical4 = new ImageBrush();
+        ImageBrush murVertical3 = new ImageBrush();
+        ImageBrush murVertical2 = new ImageBrush();
+        ImageBrush murVertical1 = new ImageBrush();
+        ImageBrush murHorizontal4 = new ImageBrush();
+        ImageBrush murHorizontal3 = new ImageBrush();
+        ImageBrush murHorizontal2 = new ImageBrush();
+        ImageBrush murHorizontal1 = new ImageBrush();
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
         ImageBrush sol = new ImageBrush();
@@ -79,8 +91,16 @@ namespace SAE_TANK
             tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_S.png"));
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_N.png"));
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
-            murVertival.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical.jpg"));
-            murHorizontal.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor.jpg"));
+
+            murVertical4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
+            murVertical3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
+            murVertical2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
+            murVertical1.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical1.jpg"));
+            murHorizontal4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor4.jpg"));
+            murHorizontal3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor3.jpg"));
+            murHorizontal2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor2.jpg"));
+            murHorizontal1.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor1.jpg"));
+
             sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
             sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
 
@@ -104,6 +124,8 @@ namespace SAE_TANK
         }
         private void GameEngine(object sender, EventArgs e)
         {
+            delaiTirJ1++;
+            delaiTirJ2++;
             MovePlayer();
             {
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
@@ -185,19 +207,22 @@ namespace SAE_TANK
             }
             if(e.Key == Key.Space)
             {
-                itemsToRemove.Clear();
-                Rectangle newBullet = new Rectangle
+                if(delaiTirJ1>DELAI_ENTRE_TIR)
                 {
-                    Tag = "bulletTank1",
-                    Height = 10,
-                    Width = 10,
-                    Fill = Brushes.White,
-                    Stroke = Brushes.Red
+                    delaiTirJ1 = 0;                    
+                    Rectangle newBullet = new Rectangle
+                    {
+                        Tag = "bulletTank1",
+                        Height = 10,
+                        Width = 10,
+                        Fill = Brushes.White,
+                        Stroke = Brushes.Red
                     
-                };
-                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) - newBullet.Height + Rect_Tank_J1.Height / 2);
-                Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
-                Le_Canvas.Children.Add(newBullet);
+                    };
+                    Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) - newBullet.Height + Rect_Tank_J1.Height / 2);
+                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
+                    Le_Canvas.Children.Add(newBullet);
+                }
             }
             //test controle J2
             if (e.Key == Key.Left)
@@ -222,19 +247,21 @@ namespace SAE_TANK
             }
             if (e.Key == Key.NumPad0)
             {
-                itemsToRemove.Clear();
-                Rectangle newBullet = new Rectangle
+                if(delaiTirJ2>DELAI_ENTRE_TIR)
                 {
-                    Tag = "bulletTank2"
-                ,
-                    Height = 10,
-                    Width = 10,
-                    Fill = Brushes.White,
-                    Stroke = Brushes.Red
-                };
-                Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height + Rect_Tank_J2.Width/ 2);
-                Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
-                Le_Canvas.Children.Add(newBullet);
+                    delaiTirJ2 = 0;
+                    Rectangle newBullet = new Rectangle
+                    {
+                        Tag = "bulletTank2",
+                        Height = 10,
+                        Width = 10,
+                        Fill = Brushes.White,
+                        Stroke = Brushes.Red
+                    };
+                    Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height + Rect_Tank_J2.Width/ 2);
+                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
+                    Le_Canvas.Children.Add(newBullet);
+                }
             }
         }
         
@@ -482,14 +509,52 @@ namespace SAE_TANK
             {
                 if (murCollision[i].IntersectsWith(balle))
                 {
-                    murCollision[i]= Rect.Empty;
+                    
                     if (i < 20)
                     {
-                        mur[i].Margin = new Thickness(-100, -100, 0, 0);
+                        vie_mur[i]--;
+                        switch (vie_mur[i])
+                        {
+                            case 3:
+                                mur[i].Fill = murVertical3;
+                                break;
+                            case 2:
+                                mur[i].Fill = murVertical2;
+                                break;
+                            case 1:
+                                mur[i].Fill = murVertical1;
+                                break;
+                            case 0:
+                                mur[i].Margin = new Thickness(-100, -100, 0, 0);
+                                murCollision[i] = Rect.Empty;
+                                break;
+
+                        }
+                      
+                        
                     }
                     else
                     {
-                        murH[i-20].Margin = new Thickness(-100, -100, 0, 0);
+                        vie_mur[i]--;
+                        switch (vie_mur[i])
+                        {
+                            case 3:
+                                murH[i - mur.Length].Fill = murHorizontal3;
+                                break;
+                            case 2:
+                                murH[i - mur.Length].Fill = murHorizontal2;
+                                break;
+                            case 1:
+                                murH[i - mur.Length].Fill = murHorizontal1;
+                                break;
+                            case 0:
+                                murH[i - mur.Length].Margin = new Thickness(-100, -100, 0, 0);
+                                murCollision[i] = Rect.Empty;
+                                break;
+
+                        }
+                        
+                        
                     }
                     return true;   
                 }
@@ -570,7 +635,9 @@ namespace SAE_TANK
                 mur[i].VerticalAlignment = VerticalAlignment.Top;
                 mur[i].HorizontalAlignment = HorizontalAlignment.Left;
                 mur[i].Margin = new Thickness(x, y, 0, 0);
-                mur[i].Fill = murVertival;
+                mur[i].Fill = murVertical4;
+
+                vie_mur[i] = 4;
                 if (random.Next(3) != 0)
                 {
                 this.Le_Canvas.Children.Add(mur[i]);
@@ -598,7 +665,9 @@ namespace SAE_TANK
                 murH[i].VerticalAlignment = VerticalAlignment.Top;
                 murH[i].HorizontalAlignment = HorizontalAlignment.Left;
                 murH[i].Margin = new Thickness(x, y, 0, 0);
-                murH[i].Fill = murHorizontal;
+                murH[i].Fill = murHorizontal4;
+
+                vie_mur[i+mur.Length] = 4;
                 if (random.Next(3) != 0) 
                 {
                     
