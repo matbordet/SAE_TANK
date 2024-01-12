@@ -24,6 +24,10 @@
         <Label x:Name="lb_Test" Content="" Canvas.Left="950" Canvas.Top="425" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130"/>
         <Rectangle x:Name="coeur_J1" Fill="orange" Height="75" Canvas.Top="84" Width="250" Canvas.Left="25" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Rectangle x:Name="coeur_J2" Fill="Orange" Height="75" Canvas.Top="85" Width="250" Canvas.Left="1275" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Rectangle x:Name="rect_Chrono" Fill="Black" Height="37" Canvas.Left="300" Stroke="Black" Canvas.Top="-3" Width="950" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label x:Name="lb_Compteur" Content="00:00" Height="34" Canvas.Left="742" Width="273" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left" FontSize="20" Canvas.Top="-5"/>
+        <Label x:Name="lb_pause" Content="Le jeu est en pause! appuyer sur echap pour continuer" Canvas.Left="332" Height="39" Width="886" Background="#FFFF0101" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Canvas.Top="-5"/>
+
 
 
 
