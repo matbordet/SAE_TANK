@@ -31,8 +31,9 @@ namespace SAE_TANK
     {
         private const int DELAI_ENTRE_TIR = 10;
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1 = false;
-        private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
+        private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
+        private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2, usePowerUp_J2 = false;
+        
 
         private int Rect_Tank_J1_Speed = 5;
         private int bulletTank1Speed = 15;
@@ -265,6 +266,10 @@ namespace SAE_TANK
                 dispatcherTimer.Start();
                 lb_pause.Visibility = Visibility.Hidden;
             }
+            if(e.Key == Key.E)
+            {
+                usePowerUp_J1 = true;
+            }
             //test controle J2
             if (e.Key == Key.Left)
             {
@@ -285,6 +290,10 @@ namespace SAE_TANK
             {
                 goDown_J2 = true;
                 
+            }
+            if (e.Key == Key.NumPad1)
+            {
+                usePowerUp_J2 = true;
             }
             if (e.Key == Key.NumPad0)
             {
