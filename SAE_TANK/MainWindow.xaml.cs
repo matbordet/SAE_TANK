@@ -30,6 +30,8 @@ namespace SAE_TANK
     public partial class MainWindow : Window
     {
         private const int DELAI_ENTRE_TIR = 10;
+        private const int DELAI_ENTRE_TP = 200;
+
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2, usePowerUp_J2 = false;
@@ -58,6 +60,7 @@ namespace SAE_TANK
         public int numero_J2 = 1;
 
         private double tempsdejeu;
+        private int compteur = 0;
 
         Rectangle[] mur = new Rectangle[20];
         Rectangle[] murH = new Rectangle[20];
@@ -181,6 +184,9 @@ namespace SAE_TANK
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
             CollisionMurTank(Rect_Tank_J2, direction_J2);
+            CollisionTankTp(Rect_Tank_J1);
+            CollisionTankTp(Rect_Tank_J2);
+            
             TestVieJoueur();
             TestWin();
             Compteur();
@@ -192,7 +198,48 @@ namespace SAE_TANK
             lb_Compteur.Content = compteur_pouvoir;
             
         }
-       
+        private void CollisionBalleTp(Rectangle balleRect)
+        {
+            Rect tp1 = new Rect(Canvas.GetLeft(teleporter1), Canvas.GetTop(teleporter1), teleporter1.Width, teleporter1.Height);
+            Rect tp2 = new Rect(Canvas.GetLeft(teleporter2), Canvas.GetTop(teleporter2), teleporter2.Width, teleporter2.Height);
+
+            Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
+
+            if (balle.IntersectsWith(tp1))
+            {
+                Canvas.SetLeft(balleRect,Canvas.GetTop(teleporter2));
+                Canvas.SetTop(balleRect,Canvas.GetLeft(teleporter2));
+            }
+            else if (balle.IntersectsWith(tp2))
+            {
+                Canvas.SetLeft(balleRect, Canvas.GetTop(teleporter1));
+                Canvas.SetTop(balleRect, Canvas.GetLeft(teleporter1));
+            }
+           
+        }
+        private void CollisionTankTp(Rectangle x)
+        {
+            Rect tp1 = new Rect(Canvas.GetLeft(teleporter1), Canvas.GetTop(teleporter1), teleporter1.Width, teleporter1.Height);
+            Rect tp2 = new Rect(Canvas.GetLeft(teleporter2), Canvas.GetTop(teleporter2), teleporter2.Width, teleporter2.Height);
+
+            Rect tankRect = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+            compteur++;
+
+            if (tankRect.IntersectsWith(tp1) && compteur > DELAI_ENTRE_TP)
+            {
+                Canvas.SetLeft(x,Canvas.GetLeft(teleporter2));
+                Canvas.SetTop(x, Canvas.GetTop(teleporter2));
+                compteur = 0;
+            }
+            else if (tankRect.IntersectsWith(tp2) && compteur > DELAI_ENTRE_TP)
+            {
+                Canvas.SetLeft(x, Canvas.GetLeft(teleporter1));
+                Canvas.SetTop(x, Canvas.GetTop(teleporter1));
+                compteur = 0;
+            }
+
+        }
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
         {
@@ -414,9 +461,9 @@ namespace SAE_TANK
         }
         public void MoveAndTestBulletTank(Rectangle x)
         {
-           
+            CollisionBalleTp(x);
             //J1----------------------------------------
-            if(direction_J1 =="W")
+            if (direction_J1 =="W")
             {
                 
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
@@ -460,9 +507,9 @@ namespace SAE_TANK
                     x.Tag = "bullet_S_1";
                 }
             }
+           
 
-
-            if((string)x.Tag == "bullet_E_1")
+            if ((string)x.Tag == "bullet_E_1")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
@@ -576,6 +623,7 @@ namespace SAE_TANK
                 }
             }
             
+
 
         }
 
@@ -714,7 +762,7 @@ namespace SAE_TANK
             Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
 
             if (balle.IntersectsWith(tankRect))
-            {
+            { 
                 touche_Son_2.Play();
                 if (couleur == "B") { vie_J1--; }
                 else if (couleur == "R") { vie_J2--; }
