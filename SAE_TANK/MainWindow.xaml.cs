@@ -46,7 +46,11 @@ namespace SAE_TANK
         private int vie_J1 = 3;
         private int vie_J2 = 3;
         private int[] vie_mur = new int[40];
-        private int duree_anim_touche = 0;
+        
+        private Random random = new Random();
+        private int compteur_pouvoir = 0;
+        private int duree_entre_pouvoir = 0;
+        private bool[] est_apparu = new bool[4];
 
         private string direction_J1 = "S";
         private string direction_J2 = "N";
@@ -129,6 +133,7 @@ namespace SAE_TANK
             sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
 
            
+            duree_entre_pouvoir = random.Next(300, 500);
 
 
 
@@ -172,6 +177,7 @@ namespace SAE_TANK
                     
                 }
             }
+            InitialisePouvoir();
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
             CollisionMurTank(Rect_Tank_J2, direction_J2);
@@ -183,7 +189,7 @@ namespace SAE_TANK
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
-            lb_Compteur.Content = tempsdejeu;
+            lb_Compteur.Content = compteur_pouvoir;
             
         }
        
@@ -783,9 +789,46 @@ namespace SAE_TANK
             
 
         }
+        
         public void InitialisePouvoir()
         {
-
+            compteur_pouvoir++;
+            int position = random.Next(1,5);
+            if (compteur_pouvoir > duree_entre_pouvoir && est_apparu[position-1]==false)
+            {
+                
+                Rectangle pouvoir = new Rectangle();
+                pouvoir.Width = 75;
+                pouvoir.Height = 75;
+                pouvoir.VerticalAlignment = VerticalAlignment.Top;
+                pouvoir.HorizontalAlignment = HorizontalAlignment.Left;
+                switch (position)
+                {
+                    case 1:
+                        Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition1));
+                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition1));
+                        
+                        
+                        break;
+                    case 2:
+                        Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition2));
+                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition2));
+                        break;
+                    case 3:
+                        Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition3));
+                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition3));
+                        break;
+                    case 4:
+                        Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition4));
+                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition4));
+                        break;
+                }
+                Le_Canvas.Children.Add(pouvoir);
+                pouvoir.Fill = tank1;
+                est_apparu[position - 1] = true;
+                compteur_pouvoir = 0;
+                duree_entre_pouvoir = random.Next(300, 500);
+            }
         }
         public void TestWin()
         {
