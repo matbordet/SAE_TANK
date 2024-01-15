@@ -192,25 +192,7 @@ namespace SAE_TANK
             lb_Compteur.Content = tempsdejeu;
             
         }
-        private void CollisionBalleTp(Rectangle balleRect)
-        {
-            Rect tp1 = new Rect(Canvas.GetLeft(teleporter1), Canvas.GetTop(teleporter1), teleporter1.Width, teleporter1.Height);
-            Rect tp2 = new Rect(Canvas.GetLeft(teleporter2), Canvas.GetTop(teleporter2), teleporter2.Width, teleporter2.Height);
-
-            Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
-
-            if (balle.IntersectsWith(tp1))
-            {
-                Canvas.SetLeft(balleRect,Canvas.GetTop(teleporter2));
-                Canvas.SetTop(balleRect,Canvas.GetLeft(teleporter2));
-            }
-            else if (balle.IntersectsWith(tp2))
-            {
-                Canvas.SetLeft(balleRect, Canvas.GetTop(teleporter1));
-                Canvas.SetTop(balleRect, Canvas.GetLeft(teleporter1));
-            }
-           
-        }
+        
         private void CollisionTankTp(Rectangle x)
         {
             Rect tp1 = new Rect(Canvas.GetLeft(teleporter1), Canvas.GetTop(teleporter1), teleporter1.Width, teleporter1.Height);
@@ -455,7 +437,7 @@ namespace SAE_TANK
         }
         public void MoveAndTestBulletTank(Rectangle x)
         {
-            CollisionBalleTp(x);
+            
             //J1----------------------------------------
             if (direction_J1 =="W")
             {
