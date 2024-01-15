@@ -683,7 +683,7 @@ namespace SAE_TANK
             Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
 
             if (balle.IntersectsWith(tankRect))
-            {
+            { 
                 touche_Son_2.Play();
                 if (couleur == "B") { vie_J1--; }
                 else if (couleur == "R") { vie_J2--; }
