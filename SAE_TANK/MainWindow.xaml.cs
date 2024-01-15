@@ -79,6 +79,10 @@ namespace SAE_TANK
         ImageBrush sol = new ImageBrush();
         ImageBrush sprite_vie_J1 = new ImageBrush();
         ImageBrush sprite_vie_J2 = new ImageBrush();
+        ImageBrush sprite_interface = new ImageBrush();
+
+        ImageBrush sprite_apartition = new ImageBrush();
+        ImageBrush sprite_teleporter = new ImageBrush();
 
         System.Media.SoundPlayer tir_Piou = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/tir_son.wav");
         System.Media.SoundPlayer murSon = new SoundPlayer(AppDomain.CurrentDomain.BaseDirectory + "son/mur_son.wav");
@@ -108,6 +112,10 @@ namespace SAE_TANK
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_N.png"));
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
 
+            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "ui_cotee.jpg"));
+            sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
+            sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
+
             murVertical4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
             murVertical3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
             murVertical2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
@@ -128,6 +136,15 @@ namespace SAE_TANK
             
 
             Console.WriteLine(murCollision);
+            Apparition1.Fill = sprite_apartition;
+            Apparition2.Fill = sprite_apartition;
+            Apparition3.Fill = sprite_apartition;
+            Apparition4.Fill = sprite_apartition;
+            teleporter1.Fill = sprite_teleporter;
+            teleporter2.Fill = sprite_teleporter;
+
+            interfaceB.Fill = sprite_interface;
+            interfaceR.Fill = sprite_interface;
             fond_Arene.Fill = sol;
             Rect_Tank_J1.Fill = tank1;
             Rect_Tank_J2.Fill = tank2;
@@ -190,6 +207,10 @@ namespace SAE_TANK
             {
                 goDown_J1 = false;
             }
+            if (e.Key == Key.E)
+            {
+                usePowerUp_J1 = false;
+            }
             //test control J2
             if (e.Key == Key.Left)
             {
@@ -206,6 +227,10 @@ namespace SAE_TANK
             if (e.Key == Key.Down)
             {
                 goDown_J2 = false;
+            }
+            if (e.Key == Key.NumPad1)
+            {
+                usePowerUp_J2 = false;
             }
         }
 
@@ -756,6 +781,10 @@ namespace SAE_TANK
                 }
             }
             
+
+        }
+        public void InitialisePouvoir()
+        {
 
         }
         public void TestWin()

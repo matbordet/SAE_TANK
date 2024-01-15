@@ -8,16 +8,24 @@
         Title="MainWindow" Height="1000" Width="1550" WindowStartupLocation="CenterScreen" KeyDown="Canvas_KeyDown" KeyUp="Canvas_KeyUp" WindowState="Maximized">
     <Canvas x:Name="Le_Canvas" KeyDown="Canvas_KeyDown" KeyUp="Canvas_KeyUp" >
 
-        <Rectangle Height="984" Stroke="Black" Width="300" Fill="DeepSkyBlue" />
-        <Rectangle Height="984" Stroke="Black" Width="300" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1250"/>
+        <Rectangle x:Name="interfaceB" Height="984" Stroke="Black" Width="300" Fill="DeepSkyBlue" />
+        <Rectangle x:Name="interfaceR" Height="984" Stroke="Black" Width="300" Fill="Green" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1250"/>
 
         <Rectangle Height="160" Stroke="Black" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Rectangle Height="160" Stroke="Black" Width="303" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1250"/>
 
         <Rectangle x:Name="fond_Arene" Height="950" Canvas.Left="300" Stroke="Black" Width="950" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="34"/>
+        <Rectangle x:Name="Apparition1"  Height="75" Canvas.Left="730" Fill="Orange" Canvas.Top="875" Width="75"/>
+        <Rectangle x:Name="Apparition2"  Height="75" Canvas.Left="730" Fill="Orange" Canvas.Top="75" Width="75"/>
+        <Rectangle x:Name="Apparition3"  Height="75" Canvas.Left="350" Fill="Orange" Canvas.Top="475" Width="75"/>
+        <Rectangle x:Name="Apparition4"  Height="75" Canvas.Left="1125" Fill="Orange" Canvas.Top="475" Width="75"/>
+        
+        <Rectangle x:Name="teleporter1"  Height="75" Canvas.Left="1125" Fill="Purple" Canvas.Top="75" Width="75"/>
+        <Rectangle x:Name="teleporter2"  Height="75" Canvas.Left="350" Fill="Purple" Canvas.Top="875" Width="75"/>
 
         <Rectangle x:Name="Rect_Tank_J1" Height="74" Canvas.Left="340" Fill="Blue" Canvas.Top="60" Width="75" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Rectangle x:Name="Rect_Tank_J2"  Height="75" Canvas.Left="1136" Fill="red" Canvas.Top="873" Width="75"/>
+        
 
         <Label x:Name="lb_J1" Content="Joueur1" Height="95" Canvas.Top="10" Width="300" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48"/>
         <Label x:Name="lb_J2" Content="Joueur2" Height="95" Canvas.Top="12" Width="300" VerticalAlignment="Top" Canvas.Left="1250" HorizontalAlignment="Center" FontSize="48"/>
