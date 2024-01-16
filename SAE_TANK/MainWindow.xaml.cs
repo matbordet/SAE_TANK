@@ -31,6 +31,7 @@ namespace SAE_TANK
     {
         private const int DELAI_ENTRE_TIR = 10;
         private const int DELAI_ENTRE_TP = 200;
+        private const int VIE_MUR_RENFORCE = 25;
 
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
@@ -72,13 +73,14 @@ namespace SAE_TANK
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
         private List<Rectangle> listeTirJ1 = new List<Rectangle>();
         private List<Rectangle> listeTirJ2 = new List<Rectangle>();
-       
 
 
+        ImageBrush murVertical_R = new ImageBrush();
         ImageBrush murVertical4 = new ImageBrush();
         ImageBrush murVertical3 = new ImageBrush();
         ImageBrush murVertical2 = new ImageBrush();
         ImageBrush murVertical1 = new ImageBrush();
+        ImageBrush murHorizontal_R = new ImageBrush();
         ImageBrush murHorizontal4 = new ImageBrush();
         ImageBrush murHorizontal3 = new ImageBrush();
         ImageBrush murHorizontal2 = new ImageBrush();
@@ -125,10 +127,13 @@ namespace SAE_TANK
             sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
             sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
 
+            murVertical_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical_R.jpg"));
             murVertical4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
             murVertical3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
             murVertical2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
             murVertical1.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical1.jpg"));
+
+            murHorizontal_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor_R.jpg"));
             murHorizontal4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor4.jpg"));
             murHorizontal3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor3.jpg"));
             murHorizontal2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor2.jpg"));
@@ -138,7 +143,7 @@ namespace SAE_TANK
             sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
 
            
-            duree_entre_pouvoir = random.Next(300, 500);
+            duree_entre_pouvoir = random.Next(500, 1000);
 
 
 
@@ -189,9 +194,9 @@ namespace SAE_TANK
                     }
                     for (int i = 0; i < listeTirJ2.Count; i++)
                     {
-                        if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "R") == true || CollisionMurBalle(listeTirJ2[i]) == true)
+                        if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "B") == true || CollisionMurBalle(listeTirJ2[i]) == true)
                         {
-                            listeTirJ1.Remove(listeTirJ2[i]);
+                            listeTirJ2.Remove(listeTirJ2[i]);
                         }
 
                     }
@@ -796,8 +801,13 @@ namespace SAE_TANK
                 vie_mur[i] = 4;
                 if (random.Next(3) != 0)
                 {
-                this.Le_Canvas.Children.Add(mur[i]);
-                murCollision[i] = new Rect(x, y, largeur, hauteur);
+                    this.Le_Canvas.Children.Add(mur[i]);
+                    murCollision[i] = new Rect(x, y, largeur, hauteur);
+                    if (random.Next(10) == 1)
+                    {
+                        vie_mur[i] = VIE_MUR_RENFORCE;
+                        mur[i].Fill = murVertical_R;
+                    }
                 }
                 
                 x = x + 190;
@@ -826,9 +836,13 @@ namespace SAE_TANK
                 vie_mur[i+mur.Length] = 4;
                 if (random.Next(3) != 0) 
                 {
-                    
-                this.Le_Canvas.Children.Add(murH[i]);
-                murCollision[i + mur.Length] = new Rect(x, y, largeur, hauteur);
+                    this.Le_Canvas.Children.Add(murH[i]);
+                    murCollision[i + mur.Length] = new Rect(x, y, largeur, hauteur);
+                    if(random.Next(10) == 1)
+                    {
+                        vie_mur[i + mur.Length] = VIE_MUR_RENFORCE;
+                        murH[i].Fill = murHorizontal_R;
+                    }
                 }
                 
                 x = x + 190;
