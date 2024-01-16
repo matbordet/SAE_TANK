@@ -66,50 +66,44 @@ namespace SAE_TANK
         private void Tank_bleu_1_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 1;
-            Tank_bleu_1.BorderBrush = Brushes.Green;
-            Tank_bleu_2.BorderBrush = Brushes.Red;
-            Tank_bleu_3.BorderBrush = Brushes.Red;
-
+            MEthode(Tank_bleu_1, Tank_bleu_2, Tank_bleu_3);
         }
 
         private void Tank_bleu_2_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 2;
-            Tank_bleu_1.BorderBrush = Brushes.Red;
-            Tank_bleu_2.BorderBrush = Brushes.Green;
-            Tank_bleu_3.BorderBrush = Brushes.Red;
+            MEthode(Tank_bleu_2, Tank_bleu_3 ,Tank_bleu_1);
         }
 
         private void Tank_bleu_3_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 3;
-            Tank_bleu_1.BorderBrush = Brushes.Red;
-            Tank_bleu_2.BorderBrush = Brushes.Red;
-            Tank_bleu_3.BorderBrush = Brushes.Green;
+            MEthode(Tank_bleu_3, Tank_bleu_2, Tank_bleu_1);
         }
 
         private void Tank_rouge_3_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 3;
-            Tank_rouge_1.BorderBrush = Brushes.Red;
-            Tank_rouge_2.BorderBrush = Brushes.Red;
-            Tank_rouge_3.BorderBrush = Brushes.Green;
+            MEthode(Tank_rouge_3, Tank_rouge_2, Tank_rouge_1);
         }
 
         private void Tank_rouge_2_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 2;
-            Tank_rouge_1.BorderBrush = Brushes.Red;
-            Tank_rouge_2.BorderBrush = Brushes.Green;
-            Tank_rouge_3.BorderBrush = Brushes.Red;
+            MEthode(Tank_rouge_2, Tank_rouge_1, Tank_rouge_3);
         }
 
         private void Tank_rouge_1_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 1;
-            Tank_rouge_1.BorderBrush = Brushes.Green;
-            Tank_rouge_2.BorderBrush = Brushes.Red;
-            Tank_rouge_3.BorderBrush = Brushes.Red;
+            MEthode(Tank_rouge_1, Tank_rouge_2, Tank_rouge_3);
+        }
+
+        private void MEthode(Button bouton1 , Button bouton2, Button bouton3)
+        {
+            bouton1.BorderBrush = Brushes.Green;    
+            bouton2.BorderBrush = Brushes.Red;
+            bouton3.BorderBrush = Brushes.Red;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
