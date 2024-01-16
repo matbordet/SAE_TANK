@@ -44,6 +44,7 @@ namespace SAE_TANK
         private int Rect_Tank_J2_Speed = 5;
         private int bulletTank2Speed = 15;
         private int delaiTirJ2 = 0;
+        
 
         private int vie_J1 = 3;
         private int vie_J2 = 3;
@@ -69,7 +70,8 @@ namespace SAE_TANK
         
 
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
-
+        private List<Rectangle> listeTirJ1 = new List<Rectangle>();
+        private List<Rectangle> listeTirJ2 = new List<Rectangle>();
        
 
 
@@ -177,7 +179,25 @@ namespace SAE_TANK
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
                     MoveAndTestBulletTank(x);
-                    
+                    for (int i = 0; i < listeTirJ1.Count; i++)
+                    {
+                        if ( CollisionBalleTank(Rect_Tank_J2 , listeTirJ1[i],"R")==true || CollisionMurBalle(listeTirJ1[i]) ==true)
+                        {
+                            listeTirJ1.Remove(listeTirJ1[i]);
+                        }
+
+                    }
+                    for (int i = 0; i < listeTirJ2.Count; i++)
+                    {
+                        if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "R") == true || CollisionMurBalle(listeTirJ2[i]) == true)
+                        {
+                            listeTirJ1.Remove(listeTirJ2[i]);
+                        }
+
+                    }
+
+
+
                 }
             }
             InitialisePouvoir();
@@ -450,19 +470,20 @@ namespace SAE_TANK
                 
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
-                    
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);                    
                     x.Tag = "bullet_W_1";
+                    listeTirJ1.Add(x);
+
                 }
-               
+
             }
             else if (direction_J1 == "E")
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
-                    
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);                   
                     x.Tag = "bullet_E_1";
+                    listeTirJ1.Add(x);
                 }
 
             }
@@ -470,23 +491,18 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    // si c’est un tir joueur on le déplace vers le haut
-                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
-                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                    
+                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);                    
                     x.Tag = "bullet_N_1";
+                    listeTirJ1.Add(x);
                 }
             }
             else if (direction_J1 == "S") 
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    // si c’est un tir joueur on le déplace vers le haut
-                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
-
-                    // création d’un tir joueur à base d’un rectangle Rect (nécessaire pour la collision)
-                    
+                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);   
                     x.Tag = "bullet_S_1";
+                    listeTirJ1.Add(x);
                 }
             }
            
@@ -495,7 +511,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2,x, "R") == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     itemsToRemove.Add(x);
                 }
@@ -504,7 +520,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x, "R") == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     itemsToRemove.Add(x);
                 }
@@ -513,7 +529,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x, "R") == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 )
                 {
                     itemsToRemove.Add(x);
                 }
@@ -522,7 +538,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J2, x,"R") == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 )
                 {
                     itemsToRemove.Add(x);
                 }
@@ -536,6 +552,8 @@ namespace SAE_TANK
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                     x.Tag = "bullet_W_2";
+                    listeTirJ2.Add(x);
+
                 }
 
             }
@@ -545,6 +563,7 @@ namespace SAE_TANK
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                     x.Tag = "bullet_E_2";
+                    listeTirJ2.Add(x);
                 }
 
             }
@@ -554,6 +573,7 @@ namespace SAE_TANK
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                     x.Tag = "bullet_N_2";
+                    listeTirJ2.Add(x);
                 }
             }
             else if (direction_J2 == "S")
@@ -562,13 +582,14 @@ namespace SAE_TANK
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                     x.Tag = "bullet_S_2";
+                    listeTirJ2.Add(x);
                 }
             }
             if ((string)x.Tag == "bullet_E_2")
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x, "B") == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -578,7 +599,7 @@ namespace SAE_TANK
             {
                 Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
-                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250||CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x, "B") == true)
+                if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -588,7 +609,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 ||Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x,"B") == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -598,7 +619,7 @@ namespace SAE_TANK
             {
                 Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 || CollisionMurBalle(x) == true || CollisionBalleTank(Rect_Tank_J1, x,"B") == true)
+                if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
@@ -625,6 +646,7 @@ namespace SAE_TANK
             {
                 if (murCollision[i].IntersectsWith(balle))
                 {
+                    itemsToRemove.Add(balleRect);
                     
                     if (i < 20)
                     {
@@ -744,7 +766,8 @@ namespace SAE_TANK
             Rect balle = new Rect(Canvas.GetLeft(balleRect), Canvas.GetTop(balleRect), balleRect.Width, balleRect.Height);
 
             if (balle.IntersectsWith(tankRect))
-            { 
+            {
+                itemsToRemove.Add(balleRect);
                 touche_Son_2.Play();
                 if (couleur == "B") { vie_J1--; }
                 else if (couleur == "R") { vie_J2--; }
