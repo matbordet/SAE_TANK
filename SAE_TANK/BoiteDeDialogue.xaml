@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SAE_TANK"
         mc:Ignorable="d"
-        Title="BoiteDeDialogue" Height="450" Width="800">
+        Title="BoiteDeDialogue" Height="450" Width="800" Closing="Window_Closing">
     <Canvas>
         <Rectangle x:Name="backgroundMenu" HorizontalAlignment="Center" Height="450" Fill="Orange" VerticalAlignment="Center" Width="800"/>
 
@@ -41,6 +41,25 @@
         <TextBox x:Name="tb_J2" HorizontalAlignment="right" Margin="580,200,0,0" TextWrapping="Wrap" Text="Nom Joueur 2" VerticalAlignment="Top" Width="120"/>
 
         <Button Content="Demarrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Height="100" Canvas.Left="325" Canvas.Top="145" Click="Button_Click"/>
+        <Button x:Name="bt_parametre" Content="parametre" Canvas.Left="358" Canvas.Top="355" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="84" Click="bt_parametre_Click"/>
+        <Rectangle x:Name="rect_fond" Fill="Brown" Height="280" Canvas.Left="100" Stroke="Black" Canvas.Top="95" Width="600"/>
+
+        <Button x:Name="bt_Z" Content="Z" Canvas.Left="200" Canvas.Top="118" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" PreviewKeyDown="bt_Z_PreviewKeyDown"/>
+        <Button x:Name="bt_D" Content="D" Canvas.Left="280" Canvas.Top="197" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" PreviewKeyDown="bt_D_PreviewKeyDown"/>
+        <Button x:Name="bt_Q" Content="Q" Canvas.Left="120" Canvas.Top="198" Height="74" Width="75" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewKeyDown="bt_Q_PreviewKeyDown"/>
+        <Button x:Name="bt_S" Content="S" Canvas.Left="200" Canvas.Top="198" Height="74" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" PreviewKeyDown="bt_S_PreviewKeyDown"/>
+        <Button x:Name="bt_ES" Content="ESPACE" Canvas.Left="200" Canvas.Top="295" Height="75" Width="74" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Button x:Name="bt_H" Content="flecheHaut" Canvas.Left="525" Canvas.Top="118" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10"/>
+        <Button x:Name="bt_Dr" Content="flecheDroite" Canvas.Left="605" Canvas.Top="197" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10"/>
+        <Button x:Name="BT_Ga" Content="FlecheGauche" Canvas.Left="445" Canvas.Top="197" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10"/>
+        <Button x:Name="bt_B" Content="flecheBas" Canvas.Left="525" Canvas.Top="198" Height="75" Width="75" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10"/>
+        <Button x:Name="bt_T" Content="1" Canvas.Left="525" Canvas.Top="295" Height="74" Width="75" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        
+        <Label Content="Touche du joueur 1" Height="27" Canvas.Left="178" Canvas.Top="95" Width="118" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Touche du joueur 2" Height="27" Canvas.Left="504" Canvas.Top="95" Width="118" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        
+        <Button x:Name="bt_retour" Content="Retour" Canvas.Left="380" Canvas.Top="340" Click="bt_retour_Click"/>
 
     </Canvas>
 </Window>

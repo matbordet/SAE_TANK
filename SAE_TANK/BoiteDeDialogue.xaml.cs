@@ -23,6 +23,8 @@ namespace SAE_TANK
         public int nb_TankJ1=1;
         public int nb_TankJ2=1;
 
+        public string n1="Z",n2="Q",n3="S",n4="D",n5="Space",n6="Up",n7="Left",n8="Down",n9="Right";
+
         ImageBrush fondVert = new ImageBrush();
         ImageBrush tankB1 = new ImageBrush();
         ImageBrush tankB2 = new ImageBrush();
@@ -61,6 +63,20 @@ namespace SAE_TANK
             Tank_rouge_1.Background = tankR1;
             Tank_rouge_2.Background = tankR2;
             Tank_rouge_3.Background = tankR3;
+
+            rect_fond.Visibility = Visibility.Hidden;
+            bt_B.Visibility = Visibility.Hidden;
+            bt_D.Visibility = Visibility.Hidden;
+            bt_Dr.Visibility = Visibility.Hidden;
+            bt_ES.Visibility = Visibility.Hidden;
+            bt_H.Visibility = Visibility.Hidden;
+            bt_Q.Visibility = Visibility.Hidden;
+            bt_retour.Visibility = Visibility.Hidden;
+            bt_S.Visibility = Visibility.Hidden;
+            bt_T.Visibility = Visibility.Hidden;
+            bt_Z.Visibility = Visibility.Hidden;
+            BT_Ga.Visibility = Visibility.Hidden;
+
         }
 
         private void Tank_bleu_1_Click(object sender, RoutedEventArgs e)
@@ -93,10 +109,17 @@ namespace SAE_TANK
             MEthode(Tank_rouge_2, Tank_rouge_1, Tank_rouge_3);
         }
 
+       
+
         private void Tank_rouge_1_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 1;
             MEthode(Tank_rouge_1, Tank_rouge_2, Tank_rouge_3);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult = false;
         }
 
         private void MEthode(Button bouton1 , Button bouton2, Button bouton3)
@@ -110,6 +133,55 @@ namespace SAE_TANK
         {
             DialogResult = true;
            
+        }
+
+        private void bt_parametre_Click(object sender, RoutedEventArgs e)
+        {
+            rect_fond.Visibility = Visibility.Visible;
+            bt_B.Visibility = Visibility.Visible;
+            bt_D.Visibility = Visibility.Visible;
+            bt_Dr.Visibility = Visibility.Visible;
+            bt_ES.Visibility = Visibility.Visible;
+            bt_H.Visibility = Visibility.Visible;
+            bt_Q.Visibility = Visibility.Visible;
+            bt_retour.Visibility = Visibility.Visible;
+            bt_S.Visibility = Visibility.Visible;
+            bt_T.Visibility = Visibility.Visible;
+            bt_Z.Visibility = Visibility.Visible;
+            BT_Ga.Visibility = Visibility.Visible;
+        }
+
+        private void bt_retour_Click(object sender, RoutedEventArgs e)
+        {
+            rect_fond.Visibility = Visibility.Hidden;
+            bt_B.Visibility = Visibility.Hidden;
+            bt_D.Visibility = Visibility.Hidden;
+            bt_Dr.Visibility = Visibility.Hidden;
+            bt_ES.Visibility = Visibility.Hidden;
+            bt_H.Visibility = Visibility.Hidden;
+            bt_Q.Visibility = Visibility.Hidden;
+            bt_retour.Visibility = Visibility.Hidden;
+            bt_S.Visibility = Visibility.Hidden;
+            bt_T.Visibility = Visibility.Hidden;
+            bt_Z.Visibility = Visibility.Hidden;
+            BT_Ga.Visibility = Visibility.Hidden;
+        }
+
+        private void bt_Z_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n1 = (string)bt_Z.Content;
+        }
+        private void bt_Q_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n2 = (string)bt_Q.Content;
+        }
+        private void bt_S_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n3 = (string)bt_S.Content;
+        }
+        private void bt_D_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n4 = (string)bt_D.Content;
         }
     }
 }
