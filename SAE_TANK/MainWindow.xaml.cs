@@ -90,6 +90,7 @@ namespace SAE_TANK
         ImageBrush sol = new ImageBrush();
         ImageBrush sprite_vie_J1 = new ImageBrush();
         ImageBrush sprite_vie_J2 = new ImageBrush();
+        ImageBrush sprite_coeur = new ImageBrush();
         ImageBrush sprite_interface = new ImageBrush();
 
         ImageBrush sprite_apartition = new ImageBrush();
@@ -141,6 +142,8 @@ namespace SAE_TANK
 
             sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
             sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
+            sprite_coeur.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Plein.png"));
+
 
            
             duree_entre_pouvoir = random.Next(500, 1000);
@@ -891,7 +894,7 @@ namespace SAE_TANK
                         break;
                 }
                 Le_Canvas.Children.Add(pouvoir);
-                pouvoir.Fill = tank1;
+                pouvoir.Fill = sprite_coeur;
                 est_apparu[position - 1] = true;
                 compteur_pouvoir = 0;
                 duree_entre_pouvoir = random.Next(300, 500);
