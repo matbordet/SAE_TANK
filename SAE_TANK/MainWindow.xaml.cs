@@ -32,6 +32,8 @@ namespace SAE_TANK
         private const int DELAI_ENTRE_TIR = 10;
         private const int DELAI_ENTRE_TP = 200;
         private const int VIE_MUR_RENFORCE = 25;
+        private const int DELAI_MIN_COEUR = 500;
+        private const int DELAI_MAX_COEUR = 800;
 
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
@@ -55,6 +57,7 @@ namespace SAE_TANK
         private int compteur_pouvoir = 0;
         private int duree_entre_pouvoir = 0;
         private bool[] est_apparu = new bool[4];
+        private Rectangle[] coeur = new Rectangle[4];
 
         private string direction_J1 = "S";
         private string direction_J2 = "N";
@@ -122,7 +125,7 @@ namespace SAE_TANK
             numero_J1 = dialogue.nb_TankJ1;
             numero_J2 = dialogue.nb_TankJ2;
 
-            duree_entre_pouvoir = random.Next(700, 1500);
+            duree_entre_pouvoir = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
             
 
             Console.WriteLine(murCollision);
@@ -142,7 +145,9 @@ namespace SAE_TANK
             delaiTirJ1++;
             delaiTirJ2++;
             MovePlayer();
-            {
+            CollisionPouvoir(Rect_Tank_J1, "J1");
+            CollisionPouvoir(Rect_Tank_J2, "J2");
+            
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
                     MoveAndTestBulletTank(x);
@@ -165,7 +170,7 @@ namespace SAE_TANK
 
 
 
-                }
+                
             }
             InitialisePouvoir();
             RemoveItemsRemove();
@@ -620,19 +625,13 @@ namespace SAE_TANK
                         vie_mur[i]--;
                         switch (vie_mur[i])
                         {
-                            case 3:
-
-                               
+                            case 3:                              
                                 mur[i].Fill = murVertical3;
                                 break;
-                            case 2:
-                                
-
+                            case 2:                                
                                 mur[i].Fill = murVertical2;
                                 break;
                             case 1:
-                                
-
                                 mur[i].Fill = murVertical1;
                                 break;
                             case 0:
@@ -640,10 +639,7 @@ namespace SAE_TANK
                                 mur[i].Margin = new Thickness(-100, -100, 0, 0);
                                 murCollision[i] = Rect.Empty;
                                 break;
-
-                        }
-                      
-                        
+                        }                     
                     }
                     else
                     {
@@ -651,18 +647,12 @@ namespace SAE_TANK
                         switch (vie_mur[i])
                         {
                             case 3:
-                               
-
                                 murH[i - mur.Length].Fill = murHorizontal3;
                                 break;
-                            case 2:
-                                
-
+                            case 2:   
                                 murH[i - mur.Length].Fill = murHorizontal2;
                                 break;
                             case 1:
-                               
-
                                 murH[i - mur.Length].Fill = murHorizontal1;
                                 break;
                             case 0:
@@ -748,7 +738,7 @@ namespace SAE_TANK
         {
             Random random = new Random();
             
-            int x = 300 + 180, y = 35, largeur = 20, hauteur = 175,compteur=0;
+            int x = 480, y = 40, largeur = 20, hauteur = 170,compteur=0;
             for (int i = 0; i < mur.Length; i++)
             {
                 mur[i] = new Rectangle();
@@ -776,7 +766,7 @@ namespace SAE_TANK
                 if(compteur > 3)
                 {
                     x = 480;
-                    y = y + 195;
+                    y = y + 190;
                     compteur = 0;
                 }
             }
@@ -811,16 +801,31 @@ namespace SAE_TANK
                 if (compteur > 4)
                 {
                     x = 305;
-                    y = y + 195;
+                    y = y + 190;
                     compteur = 0;
                 }
             }
             
 
         }
-        public void CollisionPouvoir(Rectangle tank)
+        public void CollisionPouvoir(Rectangle tank,string joueur)
         {
 
+           Rect tankRect = new Rect(Canvas.GetLeft(tank), Canvas.GetTop(tank), tank.Width, tank.Height);
+            for (int i = 0; i < 4; i++)
+            {
+                if (est_apparu[i] == true)
+                {
+                    Rect coeurRect = new Rect(Canvas.GetLeft(coeur[i]), Canvas.GetTop(coeur[i]), coeur[i].Width, coeur[i].Height);
+                    if (coeurRect.IntersectsWith(tankRect))
+                    {
+                        if (joueur == "J1" && vie_J1 < 3) { vie_J1++; itemsToRemove.Add(coeur[i]); }
+                        else if (joueur == "J2" && vie_J2 < 3) { vie_J2++; itemsToRemove.Add(coeur[i]); }
+                        est_apparu[i] = false;
+                    }
+                }
+            }
+            
         }
         
         public void InitialisePouvoir()
@@ -839,9 +844,7 @@ namespace SAE_TANK
                 {
                     case 1:
                         Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition1));
-                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition1));
-                        
-                        
+                        Canvas.SetTop(pouvoir, Canvas.GetTop(Apparition1));                       
                         break;
                     case 2:
                         Canvas.SetLeft(pouvoir, Canvas.GetLeft(Apparition2));
@@ -860,7 +863,8 @@ namespace SAE_TANK
                 pouvoir.Fill = sprite_coeur;
                 est_apparu[position - 1] = true;
                 compteur_pouvoir = 0;
-                duree_entre_pouvoir = random.Next(500, 1000);
+                duree_entre_pouvoir = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
+                coeur[position-1] = pouvoir;
             }
         }
         public void TestWin()
