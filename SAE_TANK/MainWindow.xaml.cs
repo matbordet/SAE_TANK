@@ -68,7 +68,7 @@ namespace SAE_TANK
         Rectangle[] murH = new Rectangle[20];
         Rect[] murCollision = new Rect[46];
 
-        
+        EcrandFin fin = new EcrandFin();
 
         private List<Rectangle> itemsToRemove = new List<Rectangle>();
         private List<Rectangle> listeTirJ1 = new List<Rectangle>();
@@ -111,13 +111,14 @@ namespace SAE_TANK
             InitialiseImage();
             InitialiseMurs();
             lb_pause.Visibility = Visibility.Hidden;
+
             BoiteDeDialogue dialogue = new BoiteDeDialogue();
             dialogue.ShowDialog();
-
             if(DialogResult == false)
             {
                 Application.Current.Shutdown();
             }
+
             numero_J1 = dialogue.nb_TankJ1;
             numero_J2 = dialogue.nb_TankJ2;
 
@@ -867,7 +868,11 @@ namespace SAE_TANK
             if (vie_J1 == 0 || vie_J2 == 0)
             {
                 dispatcherTimer.Stop();
-                MessageBox.Show("quoicoucrampté","valentinpagnan",MessageBoxButton.OK,MessageBoxImage.Error);
+                fin.ShowDialog();
+                if (DialogResult == false)
+                {
+                    Application.Current.Shutdown();
+                }
             }
         }
         private void InitialiseImage()
