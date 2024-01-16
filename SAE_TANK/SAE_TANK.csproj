@@ -20,6 +20,9 @@
     <None Update="3_coeur.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="coeur_Plein.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="image_Tanks\Tank_bleu_1_E.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
