@@ -108,6 +108,8 @@ namespace SAE_TANK
         public MainWindow()
         {
             InitializeComponent();
+            InitialiseImage();
+            InitialiseMurs();
             lb_pause.Visibility = Visibility.Hidden;
             BoiteDeDialogue dialogue = new BoiteDeDialogue();
             dialogue.ShowDialog();
@@ -119,55 +121,11 @@ namespace SAE_TANK
             numero_J1 = dialogue.nb_TankJ1;
             numero_J2 = dialogue.nb_TankJ2;
 
-            
-            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_S.png"));
-            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_N.png"));
-            sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
-
-            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "ui_cotee.jpg"));
-            sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
-            sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
-
-            murVertical_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical_R.jpg"));
-            murVertical4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
-            murVertical3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
-            murVertical2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
-            murVertical1.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical1.jpg"));
-
-            murHorizontal_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor_R.jpg"));
-            murHorizontal4.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor4.jpg"));
-            murHorizontal3.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor3.jpg"));
-            murHorizontal2.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor2.jpg"));
-            murHorizontal1.ImageSource=new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor1.jpg"));
-
-            sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
-            sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
-            sprite_coeur.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Plein.png"));
-
-
-           
-            duree_entre_pouvoir = random.Next(500, 1000);
-
-
-
-            InitialiseMurs();
+            duree_entre_pouvoir = random.Next(700, 1500);
             
 
             Console.WriteLine(murCollision);
-            Apparition1.Fill = sprite_apartition;
-            Apparition2.Fill = sprite_apartition;
-            Apparition3.Fill = sprite_apartition;
-            Apparition4.Fill = sprite_apartition;
-            teleporter1.Fill = sprite_teleporter;
-            teleporter2.Fill = sprite_teleporter;
-
-            interfaceB.Fill = sprite_interface;
-            interfaceR.Fill = sprite_interface;
-            fond_Arene.Fill = sol;
-            Rect_Tank_J1.Fill = tank1;
-            Rect_Tank_J2.Fill = tank2;
-            coeur_J1.Fill = sprite_vie_J1;
-            coeur_J2.Fill = sprite_vie_J2;
+            
 
             lb_J1.Content = dialogue.tb_J1.Text;
             lb_J2.Content = dialogue.tb_J2.Text;
@@ -859,6 +817,10 @@ namespace SAE_TANK
             
 
         }
+        public void CollisionPouvoir(Rectangle tank)
+        {
+
+        }
         
         public void InitialisePouvoir()
         {
@@ -897,7 +859,7 @@ namespace SAE_TANK
                 pouvoir.Fill = sprite_coeur;
                 est_apparu[position - 1] = true;
                 compteur_pouvoir = 0;
-                duree_entre_pouvoir = random.Next(300, 500);
+                duree_entre_pouvoir = random.Next(500, 1000);
             }
         }
         public void TestWin()
@@ -907,6 +869,47 @@ namespace SAE_TANK
                 dispatcherTimer.Stop();
                 MessageBox.Show("quoicoucrampté","valentinpagnan",MessageBoxButton.OK,MessageBoxImage.Error);
             }
+        }
+        private void InitialiseImage()
+        {
+            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_S.png"));
+            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_" + numero_J2 + "_N.png"));
+            sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
+
+            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "ui_cotee.jpg"));
+            sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
+            sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
+
+            murVertical_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical_R.jpg"));
+            murVertical4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
+            murVertical3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
+            murVertical2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
+            murVertical1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical1.jpg"));
+
+            murHorizontal_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor_R.jpg"));
+            murHorizontal4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor4.jpg"));
+            murHorizontal3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor3.jpg"));
+            murHorizontal2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor2.jpg"));
+            murHorizontal1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor1.jpg"));
+
+            sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
+            sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
+            sprite_coeur.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Plein.png"));
+
+            Apparition1.Fill = sprite_apartition;
+            Apparition2.Fill = sprite_apartition;
+            Apparition3.Fill = sprite_apartition;
+            Apparition4.Fill = sprite_apartition;
+            teleporter1.Fill = sprite_teleporter;
+            teleporter2.Fill = sprite_teleporter;
+
+            interfaceB.Fill = sprite_interface;
+            interfaceR.Fill = sprite_interface;
+            fond_Arene.Fill = sol;
+            Rect_Tank_J1.Fill = tank1;
+            Rect_Tank_J2.Fill = tank2;
+            coeur_J1.Fill = sprite_vie_J1;
+            coeur_J2.Fill = sprite_vie_J2;
         }
 
     }
