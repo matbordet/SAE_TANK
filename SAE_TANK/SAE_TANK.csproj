@@ -179,6 +179,9 @@
     <None Update="son\touche_son_2.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="sprite_powerUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Tank_bleu_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
