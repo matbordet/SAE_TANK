@@ -95,6 +95,9 @@
     <None Update="image_Tanks\Tank_rouge_3_W.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Interface_Utilisateur.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Menu.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
