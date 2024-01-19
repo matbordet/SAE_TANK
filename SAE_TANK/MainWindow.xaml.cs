@@ -144,9 +144,8 @@ namespace SAE_TANK
         {
             delaiTirJ1++;
             delaiTirJ2++;
-            MovePlayer();
-            CollisionPouvoir(Rect_Tank_J1, "J1");
-            CollisionPouvoir(Rect_Tank_J2, "J2");
+            
+            
             
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
@@ -168,10 +167,7 @@ namespace SAE_TANK
 
                     }
 
-
-
-                
-            }
+                }
             InitialisePouvoir();
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
@@ -181,9 +177,9 @@ namespace SAE_TANK
             
             TestVieJoueur();
             TestWin();
-            Compteur();
-            
- }
+            Compteur();           
+         }
+
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
