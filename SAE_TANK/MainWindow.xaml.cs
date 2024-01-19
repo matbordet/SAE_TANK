@@ -29,6 +29,8 @@ namespace SAE_TANK
     
     public partial class MainWindow : Window
     {
+        private const string JOUEUR_UN = "1";
+        private const string JOUEUR_DEUX = "2";
         private const int DELAI_ENTRE_TIR = 10;
         private const int DELAI_ENTRE_TP = 200;
         private const int VIE_MUR_RENFORCE = 25;
@@ -36,7 +38,22 @@ namespace SAE_TANK
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
         private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2, usePowerUp_J2 = false;
-        
+
+        private string toucheAvancer1;
+        private string toucheAvancer2;
+        private string toucheReculer1;
+        private string toucheReculer2;
+        private string toucheGauche1;
+        private string toucheGauche2;
+        private string toucheDroite1;
+        private string toucheDroite2;
+        private string toucheTir1;
+        private string toucheTir2;
+       
+
+
+        private BoiteDeDialogue accessBoiteDeDialogue;
+
 
         private int Rect_Tank_J1_Speed = 5;
         private int bulletTank1Speed = 15;
@@ -85,8 +102,10 @@ namespace SAE_TANK
         ImageBrush murHorizontal3 = new ImageBrush();
         ImageBrush murHorizontal2 = new ImageBrush();
         ImageBrush murHorizontal1 = new ImageBrush();
+
         ImageBrush tank1 = new ImageBrush();
         ImageBrush tank2 = new ImageBrush();
+
         ImageBrush sol = new ImageBrush();
         ImageBrush sprite_vie_J1 = new ImageBrush();
         ImageBrush sprite_vie_J2 = new ImageBrush();
@@ -110,6 +129,15 @@ namespace SAE_TANK
             InitializeComponent();
             InitialiseImage();
             InitialiseMurs();
+
+            
+
+
+
+
+
+
+
             lb_pause.Visibility = Visibility.Hidden;
 
             BoiteDeDialogue dialogue = new BoiteDeDialogue();
@@ -134,15 +162,15 @@ namespace SAE_TANK
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
             dispatcherTimer.Start();
-
+           
 
         }
         private void GameEngine(object sender, EventArgs e)
         {
             delaiTirJ1++;
             delaiTirJ2++;
-            MovePlayer();
-            {
+            direction_J1=MoveTank(Rect_Tank_J1,goLeft_J1,goRight_J1,goUp_J1,goDown_J1,Rect_Tank_J1_Speed,numero_J1,direction_J1);
+            direction_J2 = MoveTank(Rect_Tank_J2, goLeft_J2, goRight_J2, goUp_J2, goDown_J2, Rect_Tank_J2_Speed, numero_J2,direction_J2);
                 foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
                 {
                     MoveAndTestBulletTank(x);
@@ -166,7 +194,6 @@ namespace SAE_TANK
 
 
                 }
-            }
             InitialisePouvoir();
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
@@ -177,8 +204,19 @@ namespace SAE_TANK
             TestVieJoueur();
             TestWin();
             Compteur();
-            
- }
+
+            //toucheAvancer1 = accessBoiteDeDialogue.n1;
+            //toucheAvancer2 = accessBoiteDeDialogue.n6;
+            //toucheDroite1 = accessBoiteDeDialogue.n4;
+            //toucheDroite2 = accessBoiteDeDialogue.n9;
+            //toucheGauche1 = accessBoiteDeDialogue.n2;
+            //toucheGauche2 = accessBoiteDeDialogue.n7;
+            //toucheReculer1 = accessBoiteDeDialogue.n3;
+            //toucheReculer1 = accessBoiteDeDialogue.n8;
+            //toucheTir1 = accessBoiteDeDialogue.n5;
+            //toucheTir2 = accessBoiteDeDialogue.n6;
+
+        }
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
@@ -367,67 +405,102 @@ namespace SAE_TANK
             }
         }
         
-        public void MovePlayer()
+        public string MoveTank(Rectangle tank,bool goLeft,bool goRight,bool goUp, bool goDown,int speed, int numero, string direction)
         {
-
-            //deplacement du joueur 1
-            if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 300 && CollisionMurJoueur(Rect_Tank_J1) == false)
+            
+            if (goLeft && Canvas.GetLeft(tank) > 300 && CollisionMurJoueur(tank) == false)
             {
-                direction_J1 = "W";
-                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_"+direction_J1+".png"));
-                Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) - Rect_Tank_J1_Speed);
+                direction = "W";
+                Canvas.SetLeft(tank, Canvas.GetLeft(tank) - speed);
             }
-            else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width < 1250 && CollisionMurJoueur(Rect_Tank_J1) == false)
+            else if (goRight && Canvas.GetLeft(tank) + tank.Width < 1250 && CollisionMurJoueur(tank) == false)
             {
-                direction_J1 = "E";
-                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_"+direction_J1+".png"));
-                Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1_Speed);
+                direction = "E";
+                Canvas.SetLeft(tank, Canvas.GetLeft(tank) + speed);
             }
 
 
-            else if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 30 && CollisionMurJoueur(Rect_Tank_J1) == false)
+            else if (goUp && Canvas.GetTop(tank) > 30 && CollisionMurJoueur(tank) == false)
             {
-                direction_J1 = "N";
-                Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
-                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
+                direction = "N";
+                Canvas.SetTop(tank, Canvas.GetTop(tank) - speed);
             }
-            else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height < 980 && CollisionMurJoueur(Rect_Tank_J1) == false)
+            else if (goDown && Canvas.GetTop(tank) + tank.Height < 980 && CollisionMurJoueur(tank) == false)
             {
-                direction_J1 = "S";
-                Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
-                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
+                direction = "S";
+                Canvas.SetTop(tank, Canvas.GetTop(tank) + speed);
             }
-
-            //deplacement du joueur 2
-            if (goLeft_J2 && Canvas.GetLeft(Rect_Tank_J2) > 300 && CollisionMurJoueur(Rect_Tank_J2) == false)
-            {
-                direction_J2 = "W";
-                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-                Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) - Rect_Tank_J2_Speed);
-            }
-            else if (goRight_J2 && Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width <1250 && CollisionMurJoueur(Rect_Tank_J2) == false)
-            {
-                direction_J2 = "E";
-                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-                Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2_Speed);
-            }
-
-
-            else if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 30 && CollisionMurJoueur(Rect_Tank_J2) == false)
-            {
-                direction_J2 = "N";
-                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-                Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
-            }
-            else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2.Height <980 && CollisionMurJoueur(Rect_Tank_J2) == false)
-            {
-                direction_J2 = "S";
-                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-                Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
-            }
-
+            if((string)tank.Tag == JOUEUR_UN)
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero + "_" + direction + ".png"));
+           else
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_" + numero + "_" + direction + ".png"));
+            return direction;
 
         }
+
+
+
+        //public void MovePlayer()
+        //{
+
+        //    //deplacement du joueur 1
+        //    if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 300 && CollisionMurJoueur(Rect_Tank_J1) == false)
+        //    {
+        //        direction_J1 = "W";
+        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_"+direction_J1+".png"));
+        //        Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) - Rect_Tank_J1_Speed);
+        //    }
+        //    else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width < 1250 && CollisionMurJoueur(Rect_Tank_J1) == false)
+        //    {
+        //        direction_J1 = "E";
+        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_"+direction_J1+".png"));
+        //        Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1_Speed);
+        //    }
+
+
+        //    else if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 30 && CollisionMurJoueur(Rect_Tank_J1) == false)
+        //    {
+        //        direction_J1 = "N";
+        //        Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
+        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
+        //    }
+        //    else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height < 980 && CollisionMurJoueur(Rect_Tank_J1) == false)
+        //    {
+        //        direction_J1 = "S";
+        //        Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
+        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
+        //    }
+
+        //    //deplacement du joueur 2
+        //    if (goLeft_J2 && Canvas.GetLeft(Rect_Tank_J2) > 300 && CollisionMurJoueur(Rect_Tank_J2) == false)
+        //    {
+        //        direction_J2 = "W";
+        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
+        //        Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) - Rect_Tank_J2_Speed);
+        //    }
+        //    else if (goRight_J2 && Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width <1250 && CollisionMurJoueur(Rect_Tank_J2) == false)
+        //    {
+        //        direction_J2 = "E";
+        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
+        //        Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2_Speed);
+        //    }
+
+
+        //    else if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 30 && CollisionMurJoueur(Rect_Tank_J2) == false)
+        //    {
+        //        direction_J2 = "N";
+        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
+        //        Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
+        //    }
+        //    else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2.Height <980 && CollisionMurJoueur(Rect_Tank_J2) == false)
+        //    {
+        //        direction_J2 = "S";
+        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
+        //        Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
+        //    }
+
+
+        //}
         public void MoveAndTestBulletTank(Rectangle x)
         {
             

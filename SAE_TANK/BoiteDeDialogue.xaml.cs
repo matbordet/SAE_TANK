@@ -23,7 +23,7 @@ namespace SAE_TANK
         public int nb_TankJ1=1;
         public int nb_TankJ2=1;
 
-        public string n1="Z",n2="Q",n3="S",n4="D",n5="Space",n6="Up",n7="Left",n8="Down",n9="Right";
+        public string n1="Z",n2="Q",n3="S",n4="D",n5="Space",n6="Up",n7="Left",n8="Down",n9="Right",n10="NumPad1";
 
         ImageBrush fondVert = new ImageBrush();
         ImageBrush tankB1 = new ImageBrush();
@@ -76,6 +76,8 @@ namespace SAE_TANK
             bt_T.Visibility = Visibility.Hidden;
             bt_Z.Visibility = Visibility.Hidden;
             BT_Ga.Visibility = Visibility.Hidden;
+            lb_1.Visibility = Visibility.Hidden;
+            lb_2.Visibility = Visibility.Hidden;
 
         }
 
@@ -122,6 +124,8 @@ namespace SAE_TANK
             DialogResult = false;
         }
 
+        
+
         private void MEthode(Button bouton1 , Button bouton2, Button bouton3)
         {
             bouton1.BorderBrush = Brushes.Green;    
@@ -129,11 +133,15 @@ namespace SAE_TANK
             bouton3.BorderBrush = Brushes.Red;
         }
 
+       
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
            
         }
+
+        
 
         private void bt_parametre_Click(object sender, RoutedEventArgs e)
         {
@@ -149,7 +157,11 @@ namespace SAE_TANK
             bt_T.Visibility = Visibility.Visible;
             bt_Z.Visibility = Visibility.Visible;
             BT_Ga.Visibility = Visibility.Visible;
+            lb_1.Visibility = Visibility.Visible;
+            lb_2.Visibility = Visibility.Visible;
         }
+
+        
 
         private void bt_retour_Click(object sender, RoutedEventArgs e)
         {
@@ -165,23 +177,132 @@ namespace SAE_TANK
             bt_T.Visibility = Visibility.Hidden;
             bt_Z.Visibility = Visibility.Hidden;
             BT_Ga.Visibility = Visibility.Hidden;
+            lb_1.Visibility = Visibility.Hidden;
+            lb_2.Visibility = Visibility.Hidden;
         }
+        public string toucheR1
+        {
+            get
+            {
+                return n1;
+            }
+        }
+        public string toucheG1
+        {
+            get
+            {
+                return n2;
+            }
+        }
+        public string toucheB1
+        {
+            get
+            {
+                return n3;
+            }
+        }
+        public string toucheD1
+        {
+            get
+            {
+                return n4;
+            }
+        }
+        public string toucheT1
+        {
+            get
+            {
+                return n5;
+            }
+        }
+        public string toucheR2
+        {
+            get
+            {
+                return n6;
+            }
+        }
+        public string toucheG2
+        {
+            get
+            {
+                return n7;
+            }
+        }
+        public string toucheB2
+        {
+            get
+            {
+                return n8;
+            }
+        }
+        public string toucheD2
+        {
+            get
+            {
+                return n9;
+            }
+        }
+        public string toucheT2
+        {
+            get
+            {
+                return n10;
+            }
+        }
+
 
         private void bt_Z_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             n1 = (string)bt_Z.Content;
+            bt_Z.Content = e.Key.ToString();
         }
+
+        
         private void bt_Q_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             n2 = (string)bt_Q.Content;
+            bt_Q.Content = e.Key.ToString();
         }
         private void bt_S_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             n3 = (string)bt_S.Content;
+            bt_S.Content = e.Key.ToString();
         }
         private void bt_D_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             n4 = (string)bt_D.Content;
+            bt_D.Content = e.Key.ToString();
+        }
+        private void bt_ES_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n5 = (string)bt_ES.Content;
+            bt_ES.Content = e.Key.ToString();
+        }
+        private void bt_H_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n6 = (string)bt_H.Content;
+            bt_H.Content = e.Key.ToString();
+        }
+        private void BT_Ga_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n7 = (string)BT_Ga.Content;
+            BT_Ga.Content = e.Key.ToString();
+        }
+        private void bt_B_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n8 = (string)bt_B.Content;
+            bt_B.Content = e.Key.ToString();
+        }
+        private void bt_Dr_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n9 = (string)bt_Dr.Content;
+            bt_Dr.Content = e.Key.ToString();
+        }
+        private void bt_T_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            n10 = (string)bt_T.Content;
+            bt_T.Content = e.Key.ToString();
         }
     }
 }
