@@ -56,59 +56,59 @@ namespace SAE_TANK
             tankR2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_2_S.png"));
             tankR3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_3_S.png"));
             
-            Tank_bleu_1.Background = tankB1;
-            Tank_bleu_2.Background = tankB2;
-            Tank_bleu_3.Background = tankB3;
+            TankBleu1.Background = tankB1;
+            TankBleu2.Background = tankB2;
+            TankBleu3.Background = tankB3;
 
-            Tank_rouge_1.Background = tankR1;
-            Tank_rouge_2.Background = tankR2;
-            Tank_rouge_3.Background = tankR3;
+            TankRouge1.Background = tankR1;
+            TankRouge2.Background = tankR2;
+            TankRouge3.Background = tankR3;
 
-            rect_fond.Visibility = Visibility.Hidden;
-            bt_B.Visibility = Visibility.Hidden;
-            bt_D.Visibility = Visibility.Hidden;
-            bt_Dr.Visibility = Visibility.Hidden;
-            bt_ES.Visibility = Visibility.Hidden;
-            bt_H.Visibility = Visibility.Hidden;
-            bt_Q.Visibility = Visibility.Hidden;
-            bt_retour.Visibility = Visibility.Hidden;
-            bt_S.Visibility = Visibility.Hidden;
-            bt_T.Visibility = Visibility.Hidden;
-            bt_Z.Visibility = Visibility.Hidden;
-            BT_Ga.Visibility = Visibility.Hidden;
-            lb_1.Visibility = Visibility.Hidden;
-            lb_2.Visibility = Visibility.Hidden;
+            rectFond.Visibility = Visibility.Hidden;
+            btB.Visibility = Visibility.Hidden;
+            btD.Visibility = Visibility.Hidden;
+            btDr.Visibility = Visibility.Hidden;
+            btES.Visibility = Visibility.Hidden;
+            btH.Visibility = Visibility.Hidden;
+            btQ.Visibility = Visibility.Hidden;
+            btRetour.Visibility = Visibility.Hidden;
+            btS.Visibility = Visibility.Hidden;
+            btT.Visibility = Visibility.Hidden;
+            btZ.Visibility = Visibility.Hidden;
+            btGa.Visibility = Visibility.Hidden;
+            lb1.Visibility = Visibility.Hidden;
+            lb2.Visibility = Visibility.Hidden;
 
         }
 
         private void Tank_bleu_1_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 1;
-            MEthode(Tank_bleu_1, Tank_bleu_2, Tank_bleu_3);
+            MEthode(TankBleu1, TankBleu2, TankBleu3);
         }
 
         private void Tank_bleu_2_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 2;
-            MEthode(Tank_bleu_2, Tank_bleu_3 ,Tank_bleu_1);
+            MEthode(TankBleu2, TankBleu3 ,TankBleu1);
         }
 
         private void Tank_bleu_3_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ1 = 3;
-            MEthode(Tank_bleu_3, Tank_bleu_2, Tank_bleu_1);
+            MEthode(TankBleu3, TankBleu2, TankBleu1);
         }
 
         private void Tank_rouge_3_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 3;
-            MEthode(Tank_rouge_3, Tank_rouge_2, Tank_rouge_1);
+            MEthode(TankRouge3, TankRouge2, TankRouge1);
         }
 
         private void Tank_rouge_2_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 2;
-            MEthode(Tank_rouge_2, Tank_rouge_1, Tank_rouge_3);
+            MEthode(TankRouge2, TankRouge1, TankRouge3);
         }
 
        
@@ -116,7 +116,7 @@ namespace SAE_TANK
         private void Tank_rouge_1_Click(object sender, RoutedEventArgs e)
         {
             nb_TankJ2 = 1;
-            MEthode(Tank_rouge_1, Tank_rouge_2, Tank_rouge_3);
+            MEthode(TankRouge1, TankRouge2, TankRouge3);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -145,40 +145,40 @@ namespace SAE_TANK
 
         private void bt_parametre_Click(object sender, RoutedEventArgs e)
         {
-            rect_fond.Visibility = Visibility.Visible;
-            bt_B.Visibility = Visibility.Visible;
-            bt_D.Visibility = Visibility.Visible;
-            bt_Dr.Visibility = Visibility.Visible;
-            bt_ES.Visibility = Visibility.Visible;
-            bt_H.Visibility = Visibility.Visible;
-            bt_Q.Visibility = Visibility.Visible;
-            bt_retour.Visibility = Visibility.Visible;
-            bt_S.Visibility = Visibility.Visible;
-            bt_T.Visibility = Visibility.Visible;
-            bt_Z.Visibility = Visibility.Visible;
-            BT_Ga.Visibility = Visibility.Visible;
-            lb_1.Visibility = Visibility.Visible;
-            lb_2.Visibility = Visibility.Visible;
+            rectFond.Visibility = Visibility.Visible;
+            btB.Visibility = Visibility.Visible;
+            btD.Visibility = Visibility.Visible;
+            btDr.Visibility = Visibility.Visible;
+            btES.Visibility = Visibility.Visible;
+            btH.Visibility = Visibility.Visible;
+            btQ.Visibility = Visibility.Visible;
+            btRetour.Visibility = Visibility.Visible;
+            btS.Visibility = Visibility.Visible;
+            btT.Visibility = Visibility.Visible;
+            btZ.Visibility = Visibility.Visible;
+            btGa.Visibility = Visibility.Visible;
+            lb1.Visibility = Visibility.Visible;
+            lb2.Visibility = Visibility.Visible;
         }
 
         
 
         private void bt_retour_Click(object sender, RoutedEventArgs e)
         {
-            rect_fond.Visibility = Visibility.Hidden;
-            bt_B.Visibility = Visibility.Hidden;
-            bt_D.Visibility = Visibility.Hidden;
-            bt_Dr.Visibility = Visibility.Hidden;
-            bt_ES.Visibility = Visibility.Hidden;
-            bt_H.Visibility = Visibility.Hidden;
-            bt_Q.Visibility = Visibility.Hidden;
-            bt_retour.Visibility = Visibility.Hidden;
-            bt_S.Visibility = Visibility.Hidden;
-            bt_T.Visibility = Visibility.Hidden;
-            bt_Z.Visibility = Visibility.Hidden;
-            BT_Ga.Visibility = Visibility.Hidden;
-            lb_1.Visibility = Visibility.Hidden;
-            lb_2.Visibility = Visibility.Hidden;
+            rectFond.Visibility = Visibility.Hidden;
+            btB.Visibility = Visibility.Hidden;
+            btD.Visibility = Visibility.Hidden;
+            btDr.Visibility = Visibility.Hidden;
+            btES.Visibility = Visibility.Hidden;
+            btH.Visibility = Visibility.Hidden;
+            btQ.Visibility = Visibility.Hidden;
+            btRetour.Visibility = Visibility.Hidden;
+            btS.Visibility = Visibility.Hidden;
+            btT.Visibility = Visibility.Hidden;
+            btZ.Visibility = Visibility.Hidden;
+            btGa.Visibility = Visibility.Hidden;
+            lb1.Visibility = Visibility.Hidden;
+            lb2.Visibility = Visibility.Hidden;
         }
         public string toucheR1
         {
@@ -254,55 +254,55 @@ namespace SAE_TANK
 
         private void bt_Z_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n1 = (string)bt_Z.Content;
-            bt_Z.Content = e.Key.ToString();
+            n1 = (string)btZ.Content;
+            btZ.Content = e.Key.ToString();
         }
 
         
         private void bt_Q_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n2 = (string)bt_Q.Content;
-            bt_Q.Content = e.Key.ToString();
+            n2 = (string)btQ.Content;
+            btQ.Content = e.Key.ToString();
         }
         private void bt_S_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n3 = (string)bt_S.Content;
-            bt_S.Content = e.Key.ToString();
+            n3 = (string)btS.Content;
+            btS.Content = e.Key.ToString();
         }
         private void bt_D_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n4 = (string)bt_D.Content;
-            bt_D.Content = e.Key.ToString();
+            n4 = (string)btD.Content;
+            btD.Content = e.Key.ToString();
         }
         private void bt_ES_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n5 = (string)bt_ES.Content;
-            bt_ES.Content = e.Key.ToString();
+            n5 = (string)btES.Content;
+            btES.Content = e.Key.ToString();
         }
         private void bt_H_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n6 = (string)bt_H.Content;
-            bt_H.Content = e.Key.ToString();
+            n6 = (string)btH.Content;
+            btH.Content = e.Key.ToString();
         }
         private void BT_Ga_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n7 = (string)BT_Ga.Content;
-            BT_Ga.Content = e.Key.ToString();
+            n7 = (string)btGa.Content;
+            btGa.Content = e.Key.ToString();
         }
         private void bt_B_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n8 = (string)bt_B.Content;
-            bt_B.Content = e.Key.ToString();
+            n8 = (string)btB.Content;
+            btB.Content = e.Key.ToString();
         }
         private void bt_Dr_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n9 = (string)bt_Dr.Content;
-            bt_Dr.Content = e.Key.ToString();
+            n9 = (string)btDr.Content;
+            btDr.Content = e.Key.ToString();
         }
         private void bt_T_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            n10 = (string)bt_T.Content;
-            bt_T.Content = e.Key.ToString();
+            n10 = (string)btT.Content;
+            btT.Content = e.Key.ToString();
         }
     }
 }

@@ -145,7 +145,7 @@ namespace SAE_TANK
 
 
 
-            lb_pause.Visibility = Visibility.Hidden;
+            lbPause.Visibility = Visibility.Hidden;
 
             BoiteDeDialogue dialogue = new BoiteDeDialogue();
             dialogue.ShowDialog();
@@ -163,8 +163,8 @@ namespace SAE_TANK
             Console.WriteLine(murCollision);
             
 
-            lb_J1.Content = dialogue.tb_J1.Text;
-            lb_J2.Content = dialogue.tb_J2.Text;
+            lbJ1.Content = dialogue.tbJ1.Text;
+            lbJ2.Content = dialogue.tbJ2.Text;
 
             dispatcherTimer.Tick += GameEngine;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -177,12 +177,12 @@ namespace SAE_TANK
             delaiTirJ1++;
             delaiTirJ2++;
 
-            direction_J1 = MoveTank(Rect_Tank_J1, goLeft_J1, goRight_J1, goUp_J1, goDown_J1, Rect_Tank_J1_Speed, numero_J1, direction_J1);
-            direction_J2 = MoveTank(Rect_Tank_J2, goLeft_J2, goRight_J2, goUp_J2, goDown_J2, Rect_Tank_J2_Speed, numero_J2, direction_J2);
+            direction_J1 = MoveTank(rectTankJ1, goLeft_J1, goRight_J1, goUp_J1, goDown_J1, Rect_Tank_J1_Speed, numero_J1, direction_J1);
+            direction_J2 = MoveTank(rectTankJ2, goLeft_J2, goRight_J2, goUp_J2, goDown_J2, Rect_Tank_J2_Speed, numero_J2, direction_J2);
 
 
-            CollisionPouvoir(Rect_Tank_J1, "J1");
-            CollisionPouvoir(Rect_Tank_J2, "J2");
+            CollisionPouvoir(rectTankJ1, "J1");
+            CollisionPouvoir(rectTankJ2, "J2");
 
 
             foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
@@ -190,7 +190,7 @@ namespace SAE_TANK
                 MoveAndTestBulletTank(x);
                 for (int i = 0; i < listeTirJ1.Count; i++)
                 {
-                    if (CollisionBalleTank(Rect_Tank_J2, listeTirJ1[i], "R") == true || CollisionMurBalle(listeTirJ1[i]) == true)
+                    if (CollisionBalleTank(rectTankJ2, listeTirJ1[i], "R") == true || CollisionMurBalle(listeTirJ1[i]) == true)
                     {
                         listeTirJ1.Remove(listeTirJ1[i]);
                     }
@@ -198,7 +198,7 @@ namespace SAE_TANK
                 }
                 for (int i = 0; i < listeTirJ2.Count; i++)
                 {
-                    if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "B") == true || CollisionMurBalle(listeTirJ2[i]) == true)
+                    if (CollisionBalleTank(rectTankJ1, listeTirJ2[i], "B") == true || CollisionMurBalle(listeTirJ2[i]) == true)
                     {
                         listeTirJ2.Remove(listeTirJ2[i]);
                     }
@@ -211,10 +211,10 @@ namespace SAE_TANK
             }
             InitialisePouvoir();
             RemoveItemsRemove();
-            CollisionMurTank(Rect_Tank_J1, direction_J1);
-            CollisionMurTank(Rect_Tank_J2, direction_J2);
-            CollisionTankTp(Rect_Tank_J1);
-            CollisionTankTp(Rect_Tank_J2);
+            CollisionMurTank(rectTankJ1, direction_J1);
+            CollisionMurTank(rectTankJ2, direction_J2);
+            CollisionTankTp(rectTankJ1);
+            CollisionTankTp(rectTankJ2);
 
             TestVieJoueur();
             TestWin();
@@ -224,7 +224,7 @@ namespace SAE_TANK
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
-            lb_Compteur.Content = compteur_pouvoir;
+            lbCompteur.Content = compteur_pouvoir;
             
         }
         
@@ -335,8 +335,8 @@ namespace SAE_TANK
                         Stroke = Brushes.Red
                     
                     };
-                    Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J1) - newBullet.Height + Rect_Tank_J1.Height / 2);
-                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width / 2);
+                    Canvas.SetTop(newBullet, Canvas.GetTop(rectTankJ1) - newBullet.Height + rectTankJ1.Height / 2);
+                    Canvas.SetLeft(newBullet, Canvas.GetLeft(rectTankJ1) + rectTankJ1.Width / 2);
                     Le_Canvas.Children.Add(newBullet);
 
                     
@@ -347,13 +347,13 @@ namespace SAE_TANK
             if(e.Key == Key.P)
             {
                 dispatcherTimer.Stop();
-                lb_pause.Visibility = Visibility.Visible;
+                lbPause.Visibility = Visibility.Visible;
 
             }
             if(e.Key == Key.Escape)
             {
                 dispatcherTimer.Start();
-                lb_pause.Visibility = Visibility.Hidden;
+                lbPause.Visibility = Visibility.Hidden;
             }
             if(e.Key == Key.E)
             {
@@ -397,8 +397,8 @@ namespace SAE_TANK
                         Fill = Brushes.White,
                         Stroke = Brushes.Red
                     };
-                    Canvas.SetTop(newBullet, Canvas.GetTop(Rect_Tank_J2) - newBullet.Height + Rect_Tank_J2.Width/ 2);
-                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width / 2);
+                    Canvas.SetTop(newBullet, Canvas.GetTop(rectTankJ2) - newBullet.Height + rectTankJ2.Width/ 2);
+                    Canvas.SetLeft(newBullet, Canvas.GetLeft(rectTankJ2) + rectTankJ2.Width / 2);
                     Le_Canvas.Children.Add(newBullet);
 
                    
@@ -986,12 +986,11 @@ namespace SAE_TANK
 
             interfaceB.Fill = sprite_interface;
             interfaceR.Fill = sprite_interface;
-            fond_Arene.Fill = sol;
-            Rect_Tank_J1.Fill = tank1;
-            Rect_Tank_J2.Fill = tank2;
-            coeur_J1.Fill = sprite_vie_J1;
-            coeur_J2.Fill = sprite_vie_J2;
+            fondArene.Fill = sol;
+            rectTankJ1.Fill = tank1;
+            rectTankJ2.Fill = tank2;
+            coeurJ1.Fill = sprite_vie_J1;
+            coeurJ2.Fill = sprite_vie_J2;
         }
-
     }
 }
