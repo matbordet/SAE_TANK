@@ -173,37 +173,37 @@ namespace SAE_TANK
             delaiTirJ1++;
             delaiTirJ2++;
 
-            direction_J1= MoveTank(Rect_Tank_J1,goLeft_J1,goRight_J1,goUp_J1,goDown_J1,Rect_Tank_J1_Speed,numero_J1,direction_J1);
-            direction_J2 = MoveTank(Rect_Tank_J2, goLeft_J2, goRight_J2, goUp_J2, goDown_J2, Rect_Tank_J2_Speed, numero_J2,direction_J2);
+            direction_J1 = MoveTank(Rect_Tank_J1, goLeft_J1, goRight_J1, goUp_J1, goDown_J1, Rect_Tank_J1_Speed, numero_J1, direction_J1);
+            direction_J2 = MoveTank(Rect_Tank_J2, goLeft_J2, goRight_J2, goUp_J2, goDown_J2, Rect_Tank_J2_Speed, numero_J2, direction_J2);
 
-          
+
             CollisionPouvoir(Rect_Tank_J1, "J1");
             CollisionPouvoir(Rect_Tank_J2, "J2");
-            
 
-                foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
+
+            foreach (Rectangle x in Le_Canvas.Children.OfType<Rectangle>())
+            {
+                MoveAndTestBulletTank(x);
+                for (int i = 0; i < listeTirJ1.Count; i++)
                 {
-                    MoveAndTestBulletTank(x);
-                    for (int i = 0; i < listeTirJ1.Count; i++)
+                    if (CollisionBalleTank(Rect_Tank_J2, listeTirJ1[i], "R") == true || CollisionMurBalle(listeTirJ1[i]) == true)
                     {
-                        if ( CollisionBalleTank(Rect_Tank_J2 , listeTirJ1[i],"R")==true || CollisionMurBalle(listeTirJ1[i]) ==true)
-                        {
-                            listeTirJ1.Remove(listeTirJ1[i]);
-                        }
-
-                    }
-                    for (int i = 0; i < listeTirJ2.Count; i++)
-                    {
-                        if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "B") == true || CollisionMurBalle(listeTirJ2[i]) == true)
-                        {
-                            listeTirJ2.Remove(listeTirJ2[i]);
-                        }
-
+                        listeTirJ1.Remove(listeTirJ1[i]);
                     }
 
+                }
+                for (int i = 0; i < listeTirJ2.Count; i++)
+                {
+                    if (CollisionBalleTank(Rect_Tank_J1, listeTirJ2[i], "B") == true || CollisionMurBalle(listeTirJ2[i]) == true)
+                    {
+                        listeTirJ2.Remove(listeTirJ2[i]);
+                    }
+
+                }
 
 
-                
+
+
             }
             InitialisePouvoir();
             RemoveItemsRemove();
@@ -211,12 +211,12 @@ namespace SAE_TANK
             CollisionMurTank(Rect_Tank_J2, direction_J2);
             CollisionTankTp(Rect_Tank_J1);
             CollisionTankTp(Rect_Tank_J2);
-            
+
             TestVieJoueur();
             TestWin();
             Compteur();
-            
- 
+
+        }
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
