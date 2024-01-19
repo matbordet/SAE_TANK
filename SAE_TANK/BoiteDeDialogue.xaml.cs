@@ -39,7 +39,7 @@ namespace SAE_TANK
             InitializeComponent();
 
             ImageBrush background = new ImageBrush();
-            background.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Menu.jpg"));
+            background.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/Menu.jpg"));
             backgroundMenu.Fill = background;
 
             ImageBrush tankB1 = new ImageBrush();
@@ -49,12 +49,12 @@ namespace SAE_TANK
             ImageBrush tankR2 = new ImageBrush();
             ImageBrush tankR3 = new ImageBrush();
             
-            tankB1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_1_S.png"));
-            tankB2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_2_S.png"));
-            tankB3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_3_S.png"));
-            tankR1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_1_S.png"));
-            tankR2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_2_S.png"));
-            tankR3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_3_S.png"));
+            tankB1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_bleu_1_S.png"));
+            tankB2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_bleu_2_S.png"));
+            tankB3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_bleu_3_S.png"));
+            tankR1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_1_S.png"));
+            tankR2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_2_S.png"));
+            tankR3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_3_S.png"));
             
             Tank_bleu_1.Background = tankB1;
             Tank_bleu_2.Background = tankB2;

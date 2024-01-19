@@ -949,29 +949,29 @@ namespace SAE_TANK
         }
         private void InitialiseImage()
         {
-            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_S.png"));
-            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_" + numero_J2 + "_N.png"));
-            sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
+            tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_bleu_" + numero_J1 + "_S.png"));
+            tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_" + numero_J2 + "_N.png"));
+            sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/sol.png"));
 
-            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Interface_Utilisateur.png"));
-            sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
-            sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
+            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/Interface_Utilisateur.png"));
+            sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/plaque_aparition.png"));
+            sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/portal.png"));
 
-            murVertical_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical_R.jpg"));
-            murVertical4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical4.jpg"));
-            murVertical3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical3.jpg"));
-            murVertical2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical2.jpg"));
-            murVertical1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_vertical1.jpg"));
+            murVertical_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_vertical_R.jpg"));
+            murVertical4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_vertical4.jpg"));
+            murVertical3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_vertical3.jpg"));
+            murVertical2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_vertical2.jpg"));
+            murVertical1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_vertical1.jpg"));
 
-            murHorizontal_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor_R.jpg"));
-            murHorizontal4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor4.jpg"));
-            murHorizontal3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor3.jpg"));
-            murHorizontal2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor2.jpg"));
-            murHorizontal1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "mur_hor1.jpg"));
+            murHorizontal_R.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_hor_R.jpg"));
+            murHorizontal4.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_hor4.jpg"));
+            murHorizontal3.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_hor3.jpg"));
+            murHorizontal2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_hor2.jpg"));
+            murHorizontal1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/mur_hor1.jpg"));
 
-            sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
-            sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "3_coeur.png"));
-            sprite_coeur.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "coeur_Plein.png"));
+            sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/3_coeur.png"));
+            sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/3_coeur.png"));
+            sprite_coeur.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/coeur_Plein.png"));
 
             Apparition1.Fill = sprite_apartition;
             Apparition2.Fill = sprite_apartition;
