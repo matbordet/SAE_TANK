@@ -203,12 +203,8 @@ namespace SAE_TANK
 
 
 
-
-                }
-
                 
-            
-
+            }
             InitialisePouvoir();
             RemoveItemsRemove();
             CollisionMurTank(Rect_Tank_J1, direction_J1);
@@ -219,19 +215,8 @@ namespace SAE_TANK
             TestVieJoueur();
             TestWin();
             Compteur();
-
-            //toucheAvancer1 = accessBoiteDeDialogue.n1;
-            //toucheAvancer2 = accessBoiteDeDialogue.n6;
-            //toucheDroite1 = accessBoiteDeDialogue.n4;
-            //toucheDroite2 = accessBoiteDeDialogue.n9;
-            //toucheGauche1 = accessBoiteDeDialogue.n2;
-            //toucheGauche2 = accessBoiteDeDialogue.n7;
-            //toucheReculer1 = accessBoiteDeDialogue.n3;
-            //toucheReculer1 = accessBoiteDeDialogue.n8;
-            //toucheTir1 = accessBoiteDeDialogue.n5;
-            //toucheTir2 = accessBoiteDeDialogue.n6;
-
-        }
+            
+ 
         private void Compteur()
         {
             tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
@@ -968,7 +953,7 @@ namespace SAE_TANK
             tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_" + numero_J2 + "_N.png"));
             sol.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "sol.png"));
 
-            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "ui_cotee.jpg"));
+            sprite_interface.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Interface_Utilisateur.png"));
             sprite_apartition.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "plaque_aparition.png"));
             sprite_teleporter.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "portal.png"));
 
