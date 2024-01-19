@@ -819,9 +819,9 @@ namespace SAE_TANK
                     Rect coeurRect = new Rect(Canvas.GetLeft(coeur[i]), Canvas.GetTop(coeur[i]), coeur[i].Width, coeur[i].Height);
                     if (coeurRect.IntersectsWith(tankRect))
                     {
-                        if (joueur == "J1" && vie_J1 < 3) { vie_J1++; itemsToRemove.Add(coeur[i]); }
-                        else if (joueur == "J2" && vie_J2 < 3) { vie_J2++; itemsToRemove.Add(coeur[i]); }
-                        est_apparu[i] = false;
+                        if (joueur == "J1" && vie_J1 < 3) { vie_J1++; itemsToRemove.Add(coeur[i]); est_apparu[i] = false; }
+                        else if (joueur == "J2" && vie_J2 < 3) { vie_J2++; itemsToRemove.Add(coeur[i]); est_apparu[i] = false; }
+                        
                     }
                 }
             }
