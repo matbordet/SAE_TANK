@@ -129,6 +129,10 @@ namespace SAE_TANK
         
         public MainWindow()
         {
+
+            #if DEBUG
+            Console.WriteLine("Debug version");
+            #endif
             InitializeComponent();
             InitialiseImage();
             InitialiseMurs();
@@ -431,9 +435,9 @@ namespace SAE_TANK
                 Canvas.SetTop(tank, Canvas.GetTop(tank) + speed);
             }
             if((string)tank.Tag == JOUEUR_UN)
-                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero + "_" + direction + ".png"));
+                tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_bleu_" + numero + "_" + direction + ".png"));
            else
-                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_" + numero + "_" + direction + ".png"));
+                tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/image_Tanks/Tank_rouge_" + numero + "_" + direction + ".png"));
             return direction;
 
         }
@@ -780,8 +784,8 @@ namespace SAE_TANK
         {
             if (vie_J1 >=0 && vie_J2 >= 0)
             {
-                sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + vie_J1 +"_coeur.png"));
-                sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + vie_J2 +"_coeur.png"));
+                sprite_vie_J1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/"+ vie_J1 +"_coeur.png"));
+                sprite_vie_J2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "Images/"+vie_J2 +"_coeur.png"));
             }
         }
 
