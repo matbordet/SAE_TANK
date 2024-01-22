@@ -218,19 +218,22 @@ namespace SAE_TANK
 
             TestVieJoueur();
             TestWin();
-            
+
 #if DEBUG
+            Console.WriteLine("-----------------------------------------\n\n");
             Console.WriteLine("Touts les tirs du J1 : "+listeTirJ1.Count);
             Console.WriteLine("Touts les tirs du J2 : " + listeTirJ2.Count);
             Console.WriteLine("vie J1 : "+ vie_J1);
             Console.WriteLine("vie J2 : "+ vie_J2);
             Console.WriteLine("Nombres de tick depuis dernier coeur : " + compteur_coeur);
             Console.WriteLine("Nombres de tick pour prochain coeur : " + duree_entre_coeur);
+            Console.WriteLine("\n\n-----------------------------------------");
+
 #endif
 
         }
-        
-        
+
+
         private void CollisionTankTp(Rectangle x)
         {
             Rect tp1 = new Rect(Canvas.GetLeft(teleporter1), Canvas.GetTop(teleporter1), teleporter1.Width, teleporter1.Height);
