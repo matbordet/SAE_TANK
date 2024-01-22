@@ -34,7 +34,7 @@ namespace SAE_TANK
         private void bt_Quitter_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            DialogResult = false;
+            
         }
     }
 }
