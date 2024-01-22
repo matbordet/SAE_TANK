@@ -38,8 +38,8 @@ namespace SAE_TANK
         private const int DELAI_MAX_COEUR = 800;
 
         private DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1, usePowerUp_J1 = false;
-        private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2, usePowerUp_J2 = false;
+        private bool goLeft_J1, goRight_J1, goUp_J1, goDown_J1 = false;
+        private bool goLeft_J2, goRight_J2, goUp_J2, goDown_J2 = false;
 
         private string toucheAvancer1;
         private string toucheAvancer2;
@@ -277,10 +277,7 @@ namespace SAE_TANK
             {
                 goDown_J1 = false;
             }
-            if (e.Key == Key.E)
-            {
-                usePowerUp_J1 = false;
-            }
+            
             //test control J2
             if (e.Key == Key.Left)
             {
@@ -298,10 +295,7 @@ namespace SAE_TANK
             {
                 goDown_J2 = false;
             }
-            if (e.Key == Key.NumPad1)
-            {
-                usePowerUp_J2 = false;
-            }
+            
         }
 
         private void Canvas_KeyDown(object sender, KeyEventArgs e)
@@ -361,10 +355,7 @@ namespace SAE_TANK
                 dispatcherTimer.Start();
                 lbPause.Visibility = Visibility.Hidden;
             }
-            if(e.Key == Key.E)
-            {
-                usePowerUp_J1 = true;
-            }
+            
             //test controle J2
             if (e.Key == Key.Left)
             {
@@ -386,10 +377,7 @@ namespace SAE_TANK
                 goDown_J2 = true;
                 
             }
-            if (e.Key == Key.NumPad1)
-            {
-                usePowerUp_J2 = true;
-            }
+            
             if (e.Key == Key.NumPad0)
             {
                 if(delaiTirJ2>DELAI_ENTRE_TIR)
@@ -450,67 +438,7 @@ namespace SAE_TANK
 
 
 
-        //public void MovePlayer()
-        //{
-
-        //    //deplacement du joueur 1
-        //    if (goLeft_J1 && Canvas.GetLeft(Rect_Tank_J1) > 300 && CollisionMurJoueur(Rect_Tank_J1) == false)
-        //    {
-        //        direction_J1 = "W";
-        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_"+direction_J1+".png"));
-        //        Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) - Rect_Tank_J1_Speed);
-        //    }
-        //    else if (goRight_J1 && Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1.Width < 1250 && CollisionMurJoueur(Rect_Tank_J1) == false)
-        //    {
-        //        direction_J1 = "E";
-        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_"+ numero_J1 + "_"+direction_J1+".png"));
-        //        Canvas.SetLeft(Rect_Tank_J1, Canvas.GetLeft(Rect_Tank_J1) + Rect_Tank_J1_Speed);
-        //    }
-
-
-        //    else if (goUp_J1 && Canvas.GetTop(Rect_Tank_J1) > 30 && CollisionMurJoueur(Rect_Tank_J1) == false)
-        //    {
-        //        direction_J1 = "N";
-        //        Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) - Rect_Tank_J1_Speed);
-        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
-        //    }
-        //    else if (goDown_J1 && Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1.Height < 980 && CollisionMurJoueur(Rect_Tank_J1) == false)
-        //    {
-        //        direction_J1 = "S";
-        //        Canvas.SetTop(Rect_Tank_J1, Canvas.GetTop(Rect_Tank_J1) + Rect_Tank_J1_Speed);
-        //        tank1.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_bleu_" + numero_J1 + "_" + direction_J1 + ".png"));
-        //    }
-
-        //    //deplacement du joueur 2
-        //    if (goLeft_J2 && Canvas.GetLeft(Rect_Tank_J2) > 300 && CollisionMurJoueur(Rect_Tank_J2) == false)
-        //    {
-        //        direction_J2 = "W";
-        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-        //        Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) - Rect_Tank_J2_Speed);
-        //    }
-        //    else if (goRight_J2 && Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2.Width <1250 && CollisionMurJoueur(Rect_Tank_J2) == false)
-        //    {
-        //        direction_J2 = "E";
-        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-        //        Canvas.SetLeft(Rect_Tank_J2, Canvas.GetLeft(Rect_Tank_J2) + Rect_Tank_J2_Speed);
-        //    }
-
-
-        //    else if (goUp_J2 && Canvas.GetTop(Rect_Tank_J2) > 30 && CollisionMurJoueur(Rect_Tank_J2) == false)
-        //    {
-        //        direction_J2 = "N";
-        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-        //        Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) - Rect_Tank_J2_Speed);
-        //    }
-        //    else if (goDown_J2 && Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2.Height <980 && CollisionMurJoueur(Rect_Tank_J2) == false)
-        //    {
-        //        direction_J2 = "S";
-        //        tank2.ImageSource = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "image_Tanks/Tank_rouge_"+ numero_J2 + "_"+direction_J2+".png"));
-        //        Canvas.SetTop(Rect_Tank_J2, Canvas.GetTop(Rect_Tank_J2) + Rect_Tank_J2_Speed);
-        //    }
-
-
-        //}
+        
         public void MoveAndTestBulletTank(Rectangle x)
         {
             
