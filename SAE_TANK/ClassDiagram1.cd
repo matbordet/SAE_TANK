@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="SAE_TANK.MainWindow">
+    <Position X="8.25" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>9AsEwgCTYrgkoKAgFJElAMAh8AIhAaiwGIQ5gTDh0sA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE_TANK.EcrandFin" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>EcrandFin.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SAE_TANK.BoiteDeDialogue">
+    <Position X="4.5" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQECQAgAAIgQAAEIAZgKCAsAACwFJgEBAQwCAACAgAI=</HashCode>
+      <FileName>BoiteDeDialogue.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

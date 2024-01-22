@@ -130,9 +130,10 @@ namespace SAE_TANK
         public MainWindow()
         {
 
-            #if DEBUG
-            Console.WriteLine("Debug version");
-            #endif
+            
+
+
+
             InitializeComponent();
             InitialiseImage();
             InitialiseMurs();
@@ -219,6 +220,9 @@ namespace SAE_TANK
             TestVieJoueur();
             TestWin();
             Compteur();
+#if DEBUG
+            Console.WriteLine("Touts les tirs du J1 :"+listeTirJ1);
+#endif
 
         }
         private void Compteur()
