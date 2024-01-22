@@ -58,11 +58,10 @@ namespace SAE_TANK
 
 
         private int Rect_Tank_J1_Speed = 5;
-        private int bulletTank1Speed = 15;
+        private int bulletTankSpeed = 15;
         private int delaiTirJ1 = 0;
 
         private int Rect_Tank_J2_Speed = 5;
-        private int bulletTank2Speed = 15;
         private int delaiTirJ2 = 0;
         
 
@@ -71,8 +70,8 @@ namespace SAE_TANK
         private int[] vie_mur = new int[40];
         
         private Random random = new Random();
-        private int compteur_pouvoir = 0;
-        private int duree_entre_pouvoir = 0;
+        private int compteur_coeur = 0;
+        private int duree_entre_coeur = 0;
         private bool[] est_apparu = new bool[4];
         private Rectangle[] coeur = new Rectangle[4];
 
@@ -158,7 +157,7 @@ namespace SAE_TANK
             numero_J1 = dialogue.nb_TankJ1;
             numero_J2 = dialogue.nb_TankJ2;
 
-            duree_entre_pouvoir = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
+            duree_entre_coeur = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
             
 
             Console.WriteLine(murCollision);
@@ -210,7 +209,7 @@ namespace SAE_TANK
 
 
             }
-            InitialisePouvoir();
+            InitialiseCoeur();
             RemoveItemsRemove();
             CollisionMurTank(rectTankJ1, direction_J1);
             CollisionMurTank(rectTankJ2, direction_J2);
@@ -219,18 +218,18 @@ namespace SAE_TANK
 
             TestVieJoueur();
             TestWin();
-            Compteur();
+            
 #if DEBUG
-            Console.WriteLine("Touts les tirs du J1 :"+listeTirJ1);
+            Console.WriteLine("Touts les tirs du J1 : "+listeTirJ1.Count);
+            Console.WriteLine("Touts les tirs du J2 : " + listeTirJ2.Count);
+            Console.WriteLine("vie J1 : "+ vie_J1);
+            Console.WriteLine("vie J2 : "+ vie_J2);
+            Console.WriteLine("Nombres de tick depuis dernier coeur : " + compteur_coeur);
+            Console.WriteLine("Nombres de tick pour prochain coeur : " + duree_entre_coeur);
 #endif
 
         }
-        private void Compteur()
-        {
-            tempsdejeu = Math.Round(tempsdejeu + 0.016,2);
-            lbCompteur.Content = compteur_pouvoir;
-            
-        }
+        
         
         private void CollisionTankTp(Rectangle x)
         {
@@ -518,7 +517,7 @@ namespace SAE_TANK
                 
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);                    
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTankSpeed);                    
                     x.Tag = "bullet_W_1";
                     listeTirJ1.Add(x);
 
@@ -529,7 +528,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);                   
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTankSpeed);                   
                     x.Tag = "bullet_E_1";
                     listeTirJ1.Add(x);
                 }
@@ -539,7 +538,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);                    
+                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTankSpeed);                    
                     x.Tag = "bullet_N_1";
                     listeTirJ1.Add(x);
                 }
@@ -548,7 +547,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank1")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);   
+                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTankSpeed);   
                     x.Tag = "bullet_S_1";
                     listeTirJ1.Add(x);
                 }
@@ -557,38 +556,45 @@ namespace SAE_TANK
 
             if ((string)x.Tag == "bullet_E_1")
             {
-                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTankSpeed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                 if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     itemsToRemove.Add(x);
+                    listeTirJ1.Remove(x);
                 }
             }
             else if ((string)x.Tag == "bullet_W_1")
             {
-                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTankSpeed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                 if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     itemsToRemove.Add(x);
+                    listeTirJ1.Remove(x);
+
                 }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_N_1")
             {
-                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTankSpeed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 )
                 {
                     itemsToRemove.Add(x);
+                    listeTirJ1.Remove(x);
+
                 }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_S_1")
             {
-                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTankSpeed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980 )
                 {
                     itemsToRemove.Add(x);
+                    listeTirJ1.Remove(x);
+
                 }
             }
 
@@ -598,7 +604,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTankSpeed);
                     x.Tag = "bullet_W_2";
                     listeTirJ2.Add(x);
 
@@ -609,7 +615,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTankSpeed);
                     x.Tag = "bullet_E_2";
                     listeTirJ2.Add(x);
                 }
@@ -619,7 +625,7 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+                    Canvas.SetTop(x, Canvas.GetTop(x) - bulletTankSpeed);
                     x.Tag = "bullet_N_2";
                     listeTirJ2.Add(x);
                 }
@@ -628,49 +634,57 @@ namespace SAE_TANK
             {
                 if (x is Rectangle && (string)x.Tag == "bulletTank2")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                    Canvas.SetTop(x, Canvas.GetTop(x) + bulletTankSpeed);
                     x.Tag = "bullet_S_2";
                     listeTirJ2.Add(x);
                 }
             }
             if ((string)x.Tag == "bullet_E_2")
             {
-                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTank1Speed);
+                Canvas.SetLeft(x, Canvas.GetLeft(x) + bulletTankSpeed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                 if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250 )
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
+                    listeTirJ2.Remove(x);
+
                 }
             }
             else if ((string)x.Tag == "bullet_W_2")
             {
-                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTank1Speed);
+                Canvas.SetLeft(x, Canvas.GetLeft(x) - bulletTankSpeed);
                 Rect bullety = new Rect(Canvas.GetTop(x), Canvas.GetLeft(x), x.Width, x.Height);
                 if (Canvas.GetLeft(x) < 300 || Canvas.GetLeft(x) > 1250)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
+                    listeTirJ2.Remove(x);
+
                 }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_N_2")
             {
-                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTank1Speed);
+                Canvas.SetTop(x, Canvas.GetTop(x) - bulletTankSpeed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
+                    listeTirJ2.Remove(x);
+
                 }
             }
             else if (x is Rectangle && (string)x.Tag == "bullet_S_2")
             {
-                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTank1Speed);
+                Canvas.SetTop(x, Canvas.GetTop(x) + bulletTankSpeed);
                 Rect bulletx = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 if (Canvas.GetTop(x) < 30 || Canvas.GetTop(x) > 980)
                 {
                     // si c’est le cas on l’ajoute à la liste des éléments à supprimer
                     itemsToRemove.Add(x);
+                    listeTirJ2.Remove(x);
+
                 }
             }
             
@@ -904,11 +918,11 @@ namespace SAE_TANK
             
         }
         
-        public void InitialisePouvoir()
+        public void InitialiseCoeur()
         {
-            compteur_pouvoir++;
+            compteur_coeur++;
             int position = random.Next(1,5);
-            if (compteur_pouvoir > duree_entre_pouvoir && est_apparu[position-1]==false)
+            if (compteur_coeur > duree_entre_coeur && est_apparu[position-1]==false)
             {
                 
                 Rectangle pouvoir = new Rectangle();
@@ -938,8 +952,8 @@ namespace SAE_TANK
                 Le_Canvas.Children.Add(pouvoir);
                 pouvoir.Fill = sprite_coeur;
                 est_apparu[position - 1] = true;
-                compteur_pouvoir = 0;
-                duree_entre_pouvoir = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
+                compteur_coeur = 0;
+                duree_entre_coeur = random.Next(DELAI_MIN_COEUR, DELAI_MAX_COEUR);
                 coeur[position-1] = pouvoir;
             }
         }
